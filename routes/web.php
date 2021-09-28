@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\RecruiterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,3 +21,6 @@ Auth::routes();
 // Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
+
+Route::get('recruiter',[RecruiterController::class,'index']);
