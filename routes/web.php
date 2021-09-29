@@ -19,7 +19,10 @@ Auth::routes();
 // Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
+
 Route::get('hirer',[HirerController::class,'index']);
 Route::post('save_hirer',[HirerController::class,'saveHirer']);
+
 Route::get('employee',[EmployeeController::class,'index']);
 Route::post('save_employee',[EmployeeController::class,'saveEmployee']);
+

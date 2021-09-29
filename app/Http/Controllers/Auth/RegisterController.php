@@ -70,11 +70,11 @@ class RegisterController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-        $user->email_verification_code = sha1(time());
         $user->save();
+        $user->email_verification_code = rand(1000,9999);
 
         if($user != null){
-            MailController::sendSignupEmail($user->name, $user->email, $user->verification_code);
+            MailController::sendSignupEmail($user->name, $user->email, $user->email_verification_code);
             return redirect()->back()->with(session()->flash('alert-success', 'Your account has been created. Please check email for verification link.'));
         }
 
