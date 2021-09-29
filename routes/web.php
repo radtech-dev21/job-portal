@@ -23,10 +23,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
 
-<<<<<<< HEAD
 Route::get('hirer',[HirerController::class,'index']);
 
 Route::post('save_hirer',[HirerController::class,'saveHirer']);
-=======
-Route::get('recruiter',[RecruiterController::class,'index']);
->>>>>>> 0c533e526cd027cad535bb20f6fd7b2f646269f4
