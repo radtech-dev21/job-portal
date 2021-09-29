@@ -37,7 +37,6 @@
                             </div>
                             @endif
                             <div class="col-md-12">
-                                <h5>Personal Details</h5>
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Name *" value="{{old('name')}}" name="name" />
                                     @if ($errors->has('name'))
