@@ -4,6 +4,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+
+            <div class="flash-message">
+                @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                    @if(Session::has('alert-' . $msg))
+                        <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+                    @endif
+                @endforeach
+            </div>
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
@@ -53,9 +61,10 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <!-- <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
-                                </button>
+                                </button> -->
+                                <a href="/verify_user" type="submit" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">{{ __('Login') }}</a>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">

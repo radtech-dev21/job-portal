@@ -26,3 +26,6 @@ Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->n
 Route::get('hirer',[HirerController::class,'index']);
 
 Route::post('save_hirer',[HirerController::class,'saveHirer']);
+
+
+Route::get('/verify_user', [App\Http\Controllers\Auth\RegisterController::class, 'verifyUser'])->name('verified');
