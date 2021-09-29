@@ -24,7 +24,9 @@ Route::get('hirer',[HirerController::class,'index']);
 Route::post('save_hirer',[HirerController::class,'saveHirer']);
 
 
-Route::get('/verify_user', [App\Http\Controllers\Auth\RegisterController::class, 'verifyUser'])->name('verified');
+Route::get('/verify_user', [App\Http\Controllers\Auth\VerificationController::class, 'verifyUser']);
+Route::post('/verified', [App\Http\Controllers\Auth\VerificationController::class, 'verifiedUser']);
+
 Route::get('employee',[EmployeeController::class,'index']);
 Route::post('save_employee',[EmployeeController::class,'saveEmployee']);
 

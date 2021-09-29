@@ -81,21 +81,4 @@ class RegisterController extends Controller
         return redirect()->back()->with(session()->flash('alert-danger', 'Something went wrong!'));
     }
 
-    public function verifyUser()
-    {
-        return view('auth.verify');
-    }
-
-
-    public function verify(Request $request){
-        $verification_code = \Illuminate\Support\Facades\Request::get('code');
-        $user = User::where(['verification_code' => $verification_code])->first();
-        if($user != null){
-            $user->email_is_verified = 1;
-            $user->save();
-            return redirect()->route('home')->with(session()->flash('alert-success', 'Your account is verified. Please login!'));
-        }
-
-        return redirect()->route('login')->with(session()->flash('alert-danger', 'Invalid verification code!'));
-    }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 
 class VerificationController extends Controller
@@ -35,8 +37,27 @@ class VerificationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('signed')->only('verify');
-        $this->middleware('throttle:6,1')->only('verify', 'resend');
+        $this->middleware('guest');
+        // $this->middleware('signed')->only('verify');
+        // $this->middleware('throttle:6,1')->only('verify', 'resend');
+    }
+
+
+    public function verifyUser()
+    {
+        return view('auth.verify');
+    }
+
+
+    public function verifiedUser(Request $request){
+        $verification_code = $request->OTP;
+        $user = User::where(['email_verification_code' => $verification_code])->first();
+        if($user != null){
+            $user->email_is_verified = 1;
+            $user->save();
+            return redirect()->route('home')->with(session()->flash('alert-success', 'Your account is verified.!'));
+        }
+
+        return redirect()->route('login')->with(session()->flash('alert-danger', 'Invalid verification code!'));
     }
 }
