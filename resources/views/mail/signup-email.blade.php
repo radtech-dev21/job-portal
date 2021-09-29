@@ -5,7 +5,7 @@ Welcome to my Website!
 Please click the below link to verify your email and activate your account!
 <h1>{{$email_data['verification_code']}}</h1>
 <br><br>
-<a href="/verify?code={{$email_data['verification_code']}}">Click Here!</a>
+<!-- <a href="http://127.0.0.1:8000/login/">Click Here!</a> -->
 
 <br><br>
 Thank you!
