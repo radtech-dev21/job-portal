@@ -2,7 +2,8 @@
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/jquery-3.3.1.slim.min.js') }}"></script>
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-<!------ Include the above in your HEAD tag ---------->
+@extends('layouts.app')
+@section('content')
 <div class="container login-container">
     <div class="row">
         <div class="col-md-6 login-form-1">
@@ -28,7 +29,41 @@
         </form>
     </div>
 </div>
-<<<<<<< HEAD
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">{{ __('Jobs') }}</div>
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" id="search_txt">
+                        <div class="input-group-append">
+                          <button class="btn btn-secondary" type="button">
+                            <i class="fa fa-search"></i>
+                          </button>
+                        </div>
+                    </div>
+                    <div class="list-group list-group-checkable mt-5" id="list_group_main_div"></div>
+                    <script type="text/template" id="search_template">
+                        <% if(results.length !== 0) { %>
+                            <% _.each(results, function(result, key){%>
+                                <label class="list-group-item py-3" for="listGroupCheckableRadios1">
+                                First radio
+                                    <span class="d-block small opacity-50">With support text underneath to add more detail</span>
+                                </label>
+                            <% }); %>
+                        <% } else { %>
+                            <div class="alert alert-light" role="alert">
+                              No result found
+                            </div>
+                        <% } %>
+                    </script>
+                </div>
 <script type="text/javascript">
 $(document).ready(function() {
     getsearchData();
@@ -48,6 +83,3 @@ $(document).ready(function() {
 });
 </script>
 @endsection
-=======
-</div>
->>>>>>> bcf664d5df084ba4affd01791d830f414d45eddb
