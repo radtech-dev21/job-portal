@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Http\Controllers\MailController;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -62,12 +64,20 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function register(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $user = New User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->email_verification_code = sha1(time());
+        $user->save();
+
+        if($user != null){
+            MailController::sendSignupEmail($user->name, $user->email, $user->verification_code);
+            return redirect()->back()->with(session()->flash('alert-success', 'Your account has been created. Please check email for verification link.'));
+        }
+
+        return redirect()->back()->with(session()->flash('alert-danger', 'Something went wrong!'));
     }
 }
