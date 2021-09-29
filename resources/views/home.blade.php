@@ -28,4 +28,26 @@
         </form>
     </div>
 </div>
+<<<<<<< HEAD
+<script type="text/javascript">
+$(document).ready(function() {
+    getsearchData();
+    function getsearchData(){
+        var search_txt = $('#search_txt').val();
+        $.get(base_url+'/search',{search_txt:search_txt}, function(response) {
+          let results = response.results;
+          $('#list_group_main_div').html('');
+          let search_template = _.template($('#search_template').html());
+          $("#list_group_main_div").html(search_template({results:results}));
+        }).done(function() {
+        });
+    }
+    $('#search_txt').keyup(function(){
+        getsearchData();
+    });
+});
+</script>
+@endsection
+=======
 </div>
+>>>>>>> bcf664d5df084ba4affd01791d830f414d45eddb
