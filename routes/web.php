@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RecruiterController;
+use App\Http\Controllers\HirerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,8 +21,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+Route::get('hirer',[HirerController::class,'index']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('recruiter',[RecruiterController::class,'index']);
+Route::post('save_hirer',[HirerController::class,'saveHirer']);
