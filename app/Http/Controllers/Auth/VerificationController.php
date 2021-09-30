@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 
-class VerificationController extends Controller
-{
+class VerificationController extends Controller{
     /*
     |--------------------------------------------------------------------------
     | Email Verification Controller
@@ -41,13 +40,6 @@ class VerificationController extends Controller
         // $this->middleware('signed')->only('verify');
         // $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
-
-
-    public function verifyUser()
-    {
-        return view('auth.verify');
-    }
-
 
     public function verifiedUser(Request $request){
         $verification_code = $request->OTP;

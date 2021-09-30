@@ -1,4 +1,3 @@
-<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" id="bootstrap-css">
 <script src="{{ asset('js/jquery-3.3.1.slim.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" id="bootstrap-css">
@@ -7,21 +6,16 @@
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/custom/custom.js') }}"></script>
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-<!------ Include the above in your HEAD tag ---------->
+<!------ Include the above in your HEAD tag -------- -->
+@extends('layouts.app')
+@section('content')
 <div class="container register">
     <div class="row">
         <div class="col-md-3 register-left">
             <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
             <h3>Welcome</h3>
-            <p>You are 30 seconds away from earning your own money!</p>
-            <input type="submit" name="" value="Login"/><br/>
         </div>
         <div class="col-md-9 register-right">
-            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Hirer</a>
-                </li>
-            </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <form action="save_hirer" method="POST">
@@ -81,7 +75,7 @@
                                     <span class="text-danger">{{ $errors->first('skills') }}</span>
                                     @endif
                                 </div>
-                                <input type="submit" class="btnRegister"  value="Register"/>
+                                <input type="submit" class="btnRegister"  value="Apply"/>
                             </div>
                         </div>
                     </form>
@@ -95,3 +89,4 @@
         $('.selectpicker').selectpicker();
     });
 </script>
+@endsection
