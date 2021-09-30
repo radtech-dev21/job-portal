@@ -12,8 +12,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth');
     }
 
@@ -23,13 +22,21 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(){
-        if(Auth::user()->email_is_verified == ''){
-            return view('auth.verify');
-        }else if (Auth::user()->phone_is_verified == ''){
-            return view('auth.verify');
-        }else{
-            if(Auth::user()->role == 'employee'){
+        $user = Auth::user();
+        if($user->role == 'employee'){
+            if($user->email_is_verified == ''){
+                return view('auth.verify');
+            }else if ($user->phone_is_verified == ''){
+                return view('auth.verify');
+            }else{
                 return redirect()->route('employee');
+            }
+        }elseif ($user->role == 'hirer') {
+
+            if($user->email_is_verified == ''){
+                return view('auth.verify');
+            }else if ($user->phone_is_verified == ''){
+                return view('auth.verify');
             }else{
                 return view('home');
             }
@@ -37,8 +44,8 @@ class HomeController extends Controller
     }
     public function search(Request $request){
         if($request->ajax()){
-            $employee_ids = EmployeeSkills::select('employee_id')->where('skills','LIKE','%'.request('search_txt').'%')->get()->toArray();
-            $results = Employee::with('skills')->where('id', $employee_ids)->orderBy('id', 'DESC')->get();
+            $employee_ids = EmployeeSkills::where('skills','LIKE','%'.request('search_txt').'%')->pluck('employee_id')->toArray();
+            $results = Employee::with('skills')->whereIn('id', $employee_ids)->orderBy('id', 'DESC')->get();
             foreach ($results as $result) {
                 $skills_array = [];
                 foreach ($result->skills as $skill) {
