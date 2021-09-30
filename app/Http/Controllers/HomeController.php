@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Hirer;
+use Auth;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,7 +15,6 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        // $this->middleware(['auth', 'verified']);
     }
 
     /**
@@ -23,14 +23,18 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(){
-        return view('home');
+        if(Auth::user()->email_is_verified == ''){
+            return view('auth.verify');
+        }else{
+            return view('home');
+        }
     }
-    public function search(Request $request)
-    {
+    public function search(Request $request){
         if($request->ajax()){
-            $hirer_query = Hirer::query();
+            $hirer_query = Employee::query();
             if (request('search_txt')) {
-                $hirer_query->where('position', 'Like', '%' . request('search_txt') . '%');
+                $search_txt = strtoupper(request('search_txt'));
+                $hirer_query->whereJsonContains('skills', $search_txt);
             }
             $results = $hirer_query->orderBy('id', 'DESC')->get();
             return response()->json(['results' => $results], 201);

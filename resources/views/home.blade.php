@@ -4,42 +4,13 @@
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 @extends('layouts.app')
 @section('content')
-<div class="container login-container">
-    <div class="row">
-        <div class="col-md-6 login-form-1">
-            <h3>I want a Job</h3>
-            <div class="form-group">
-                <img class="eh_img" src="{{ asset('img/iam_candidate.png') }}">
-            </div>
-            <div class="form-group">
-                <a href="employee" class="btnSubmit">Employee</a>
-            </div>
-        </div>
-        <div class="col-md-6 login-form-2">
-            <div class="login-logo">
-                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
-            </div>
-            <h3>I want to Hire</h3>
-            <div class="form-group">
-               <img class="eh_img" src="{{ asset('img/iam_employer.png') }}">
-            </div>
-            <div class="form-group">
-                <a href="hirer" class="btnSubmit">Hirer</a>
-            </div>
-        </form>
-    </div>
-</div>
+@auth
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Jobs') }}</div>
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" id="search_txt">
                         <div class="input-group-append">
@@ -64,6 +35,37 @@
                         <% } %>
                     </script>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+@else
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 login-form-1">
+            <h3>I want a Job</h3>
+            <div class="form-group">
+                <img class="eh_img" src="{{ asset('img/iam_candidate.png') }}">
+            </div>
+            <div class="form-group">
+                <a href="{{url('register?role=employee')}}" class="btnSubmit">Employee</a>
+            </div>
+        </div>
+        <div class="col-md-6 login-form-2">
+            <div class="login-logo">
+                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+            </div>
+            <h3>I want to Hire</h3>
+            <div class="form-group">
+               <img class="eh_img" src="{{ asset('img/iam_employer.png') }}">
+            </div>
+            <div class="form-group">
+                <a href="{{url('register?role=hirer')}}" class="btnSubmit">Hirer</a>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 <script type="text/javascript">
 $(document).ready(function() {
     getsearchData();

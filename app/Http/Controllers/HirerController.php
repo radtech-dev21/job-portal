@@ -1,13 +1,19 @@
 <?php
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
+use Auth;
+use App\Models\User;
 use App\Models\Hirer;
+use Illuminate\Http\Request;
 class HirerController extends Controller
 {
-    /*function to load Hirer Signup view*/
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index(){
         return view('hirer-signup');
     }
+
     /*function to save Hirer data*/
     public function saveHirer(Request $request){
         $validatedData = $request->validate([
@@ -27,6 +33,7 @@ class HirerController extends Controller
         $hirer->location   = json_encode($validatedData['location']);
         $hirer->skills     = json_encode($validatedData['skills']);
         $hirer->save();
-        return back()->with('success', 'Hirer created successfully.');
+        User::where('id', Auth::id())->update(['role' => 'hirer']);
+        return back('/')->with('success', 'Hirer created successfully.');
     }
 }
