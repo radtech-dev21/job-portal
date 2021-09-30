@@ -2,14 +2,14 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Employee;
-class EmployeeController extends Controller
-{
+use App\Models\EmployeeSkills;
+class EmployeeController extends Controller{
+    
     /*function to load Employee Signup view*/
     public function index(){
         $id = auth()->id();//current user id
         return view('employee-signup');
     }
-
     /*function to save Hirer data*/
     public function saveEmployee(Request $request){
         $validatedData = $request->validate([
@@ -31,13 +31,18 @@ class EmployeeController extends Controller
         ]);
         $employee 			       = new Employee;
         $employee->name            = $validatedData['name'];
-        $employee->skills          = json_encode($validatedData['skills']);
         $employee->experience      = $validatedData['experience'];
-        $employee->locations       = json_encode($validatedData['locations']);
         $employee->current_ctc     = $validatedData['current_ctc'];
         $employee->expected_ctc    = $validatedData['expected_ctc'];
         $employee->notice_period   = $validatedData['notice_period'];
+        $employee->locations       = json_encode($validatedData['locations']);
         $employee->save();
+        foreach ($validatedData['skills'] as $skills) {
+            $EmployeeSkills = new EmployeeSkills();
+            $EmployeeSkills->skills = $skills;
+            $EmployeeSkills->employee_id = $employee->id;
+            $EmployeeSkills->save();
+        }
         return back()->with('success', 'Employee created successfully.');
     }
 }

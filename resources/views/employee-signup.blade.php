@@ -40,10 +40,9 @@
                                 </div>
                                 <div class="form-group">
                                     <select multiple name="skills[]" id="skills" class="{{ $errors->has('skills') ? ' is-invalid' : '' }} selectpicker w-100" data-style="bg-white px-4 py-3 shadow-sm " title="Select Skills *">
-                                        <option value="PHP" <?php echo (old('skills') && in_array('PHP', old('skills'))) ? "selected" : "" ?>>PHP</option>
-                                        <option value="JQuery" <?php echo (old('skills') && in_array('JQuery', old('skills'))) ? "selected" : "" ?>>JQuery</option>
+                                        <option value="PHP" <?php echo (old('skills') && in_array('PHP', old('skills'))) ? "selected" : "" ?>>Php</option>
+                                        <option value="JQuery" <?php echo (old('skills') && in_array('JQuery', old('skills'))) ? "selected" : "" ?>>Jquery</option>
                                         <option value="Javascript" <?php echo (old('skills') && in_array('Javascript', old('skills'))) ? "selected" : "" ?>>Javascript</option>
-                                        <option value="Ajax" <?php echo (old('skills') && in_array('Ajax', old('skills'))) ? "selected" : "" ?>>Ajax</option>
                                         <option value="HTML" <?php echo (old('skills') && in_array('HTML', old('skills'))) ? "selected" : "" ?>>HTML</option>
                                         <option value="CSS" <?php echo (old('skills') && in_array('CSS', old('skills'))) ? "selected" : "" ?>>CSS</option>
                                         <option value="Laravel" <?php echo (old('skills') && in_array('Laravel', old('skills'))) ? "selected" : "" ?>>Laravel</option>
