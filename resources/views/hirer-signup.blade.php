@@ -55,6 +55,12 @@
                                         <option value="Bangalore" <?php echo (old('location') && in_array('Bangalore', old('location'))) ? "selected" : "" ?>>Bangalore</option>
                                         <option value="Gurgaon" <?php echo (old('location') && in_array('Gurgaon', old('location'))) ? "selected" : "" ?>>Gurgaon</option>
                                         <option value="Ahmedabad" <?php echo (old('location') && in_array('Ahmedabad', old('location'))) ? "selected" : "" ?>>Ahmedabad</option>
+                                        <option value="Hyderabad" <?php echo (old('location') && in_array('Hyderabad', old('location'))) ? "selected" : "" ?>>Hyderabad</option>
+                                        <option value="Noida" <?php echo (old('location') && in_array('Noida', old('location'))) ? "selected" : "" ?>>Noida</option>
+                                        <option value="Trichy" <?php echo (old('location') && in_array('Trichy', old('location'))) ? "selected" : "" ?>>Trichy</option>
+                                        <option value="Sikkim" <?php echo (old('location') && in_array('Sikkim', old('location'))) ? "selected" : "" ?>>Sikkim</option>
+                                        <option value="West Bengal" <?php echo (old('location') && in_array('West Bengal', old('location'))) ? "selected" : "" ?>>West Bengal</option>
+                                        <option value="Chandigarh" <?php echo (old('location') && in_array('Chandigarh', old('location'))) ? "selected" : "" ?>>Chandigarh</option>
                                     </select>
                                     @if ($errors->has('location'))
                                         <span class="text-danger">{{ $errors->first('location') }}</span>
@@ -68,6 +74,15 @@
                                         <option value="Ajax" <?php echo (old('skills') && in_array('Ajax', old('skills'))) ? "selected" : "" ?>>Ajax</option>
                                         <option value="HTML" <?php echo (old('skills') && in_array('HTML', old('skills'))) ? "selected" : "" ?>>HTML</option>
                                         <option value="CSS" <?php echo (old('skills') && in_array('CSS', old('skills'))) ? "selected" : "" ?>>CSS</option>
+                                        <option value="Laravel" <?php echo (old('skills') && in_array('Laravel', old('skills'))) ? "selected" : "" ?>>Laravel</option>
+                                        <option value="Vue Js" <?php echo (old('skills') && in_array('Vue Js', old('skills'))) ? "selected" : "" ?>>Vue Js</option>
+                                        <option value="Mongo DB" <?php echo (old('skills') && in_array('Mongo DB', old('skills'))) ? "selected" : "" ?>>Mongo DB</option>
+                                        <option value="MySQL" <?php echo (old('skills') && in_array('MySQL', old('skills'))) ? "selected" : "" ?>>MySQL</option>
+                                        <option value="Firebase" <?php echo (old('skills') && in_array('Firebase', old('skills'))) ? "selected" : "" ?>>Firebase</option>
+                                        <option value="Networking" <?php echo (old('skills') && in_array('Networking', old('skills'))) ? "selected" : "" ?>>Networking</option>
+                                        <option value="Shopify" <?php echo (old('skills') && in_array('Shopify', old('skills'))) ? "selected" : "" ?>>Shopify</option>
+                                        <option value="Worpress" <?php echo (old('skills') && in_array('Worpress', old('skills'))) ? "selected" : "" ?>>Worpress</option>
+                                        <option value="Codeigniter" <?php echo (old('skills') && in_array('Codeigniter', old('skills'))) ? "selected" : "" ?>>Codeigniter</option>
                                     </select>
                                     @if ($errors->has('skills'))
                                         <span class="text-danger">{{ $errors->first('skills') }}</span>

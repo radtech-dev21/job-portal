@@ -24,8 +24,8 @@
                         <% if(results.length !== 0) { %>
                             <% _.each(results, function(result, key){%>
                                 <label class="list-group-item py-3" for="listGroupCheckableRadios1">
-                                First radio
-                                    <span class="d-block small opacity-50">With support text underneath to add more detail</span>
+                                <%= result.name %>
+                                    <span class="d-block small opacity-50"><%= result.skill_text %></span>
                                 </label>
                             <% }); %>
                         <% } else { %>

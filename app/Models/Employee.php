@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     use HasFactory;
+    public function styleOption(){
+        
+    }
+    public function skills(){
+        return $this->hasMany('App\Models\EmployeeSkills');
+    }
 }

@@ -40,12 +40,20 @@
                                 </div>
                                 <div class="form-group">
                                     <select multiple name="skills[]" id="skills" class="{{ $errors->has('skills') ? ' is-invalid' : '' }} selectpicker w-100" data-style="bg-white px-4 py-3 shadow-sm " title="Select Skills *">
-                                        <option value="PHP" <?php echo (old('skills') && in_array('PHP', old('skills'))) ? "selected" : "" ?>>PHP</option>
-                                        <option value="JQuery" <?php echo (old('skills') && in_array('JQuery', old('skills'))) ? "selected" : "" ?>>JQuery</option>
+                                        <option value="PHP" <?php echo (old('skills') && in_array('PHP', old('skills'))) ? "selected" : "" ?>>Php</option>
+                                        <option value="JQuery" <?php echo (old('skills') && in_array('JQuery', old('skills'))) ? "selected" : "" ?>>Jquery</option>
                                         <option value="Javascript" <?php echo (old('skills') && in_array('Javascript', old('skills'))) ? "selected" : "" ?>>Javascript</option>
-                                        <option value="Ajax" <?php echo (old('skills') && in_array('Ajax', old('skills'))) ? "selected" : "" ?>>Ajax</option>
                                         <option value="HTML" <?php echo (old('skills') && in_array('HTML', old('skills'))) ? "selected" : "" ?>>HTML</option>
                                         <option value="CSS" <?php echo (old('skills') && in_array('CSS', old('skills'))) ? "selected" : "" ?>>CSS</option>
+                                        <option value="Laravel" <?php echo (old('skills') && in_array('Laravel', old('skills'))) ? "selected" : "" ?>>Laravel</option>
+                                        <option value="Vue Js" <?php echo (old('skills') && in_array('Vue Js', old('skills'))) ? "selected" : "" ?>>Vue Js</option>
+                                        <option value="Mongo DB" <?php echo (old('skills') && in_array('Mongo DB', old('skills'))) ? "selected" : "" ?>>Mongo DB</option>
+                                        <option value="MySQL" <?php echo (old('skills') && in_array('MySQL', old('skills'))) ? "selected" : "" ?>>MySQL</option>
+                                        <option value="Firebase" <?php echo (old('skills') && in_array('Firebase', old('skills'))) ? "selected" : "" ?>>Firebase</option>
+                                        <option value="Networking" <?php echo (old('skills') && in_array('Networking', old('skills'))) ? "selected" : "" ?>>Networking</option>
+                                        <option value="Shopify" <?php echo (old('skills') && in_array('Shopify', old('skills'))) ? "selected" : "" ?>>Shopify</option>
+                                        <option value="Worpress" <?php echo (old('skills') && in_array('Worpress', old('skills'))) ? "selected" : "" ?>>Worpress</option>
+                                        <option value="Codeigniter" <?php echo (old('skills') && in_array('Codeigniter', old('skills'))) ? "selected" : "" ?>>Codeigniter</option>
                                     </select>
                                     @if ($errors->has('skills'))
                                     <span class="text-danger">{{ $errors->first('skills') }}</span>
@@ -69,6 +77,12 @@
                                         <option value="Bangalore" <?php echo (old('locations') && in_array('Bangalore', old('locations'))) ? "selected" : "" ?>>Bangalore</option>
                                         <option value="Gurgaon" <?php echo (old('locations') && in_array('Gurgaon', old('locations'))) ? "selected" : "" ?>>Gurgaon</option>
                                         <option value="Ahmedabad" <?php echo (old('locations') && in_array('Ahmedabad', old('locations'))) ? "selected" : "" ?>>Ahmedabad</option>
+                                        <option value="Hyderabad" <?php echo (old('locations') && in_array('Hyderabad', old('locations'))) ? "selected" : "" ?>>Hyderabad</option>
+                                        <option value="Noida" <?php echo (old('locations') && in_array('Noida', old('locations'))) ? "selected" : "" ?>>Noida</option>
+                                        <option value="Trichy" <?php echo (old('locations') && in_array('Trichy', old('locations'))) ? "selected" : "" ?>>Trichy</option>
+                                        <option value="Sikkim" <?php echo (old('locations') && in_array('Sikkim', old('locations'))) ? "selected" : "" ?>>Sikkim</option>
+                                        <option value="West Bengal" <?php echo (old('locations') && in_array('West Bengal', old('locations'))) ? "selected" : "" ?>>West Bengal</option>
+                                        <option value="Chandigarh" <?php echo (old('locations') && in_array('Chandigarh', old('locations'))) ? "selected" : "" ?>>Chandigarh</option>
                                     </select>
                                     @if ($errors->has('locations'))
                                     <span class="text-danger">{{ $errors->first('locations') }}</span>
