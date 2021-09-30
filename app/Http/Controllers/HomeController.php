@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Auth;
-use App\Models\Employee;
+use App\Models\{EmployeeSkills,Employee};
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -35,12 +35,15 @@ class HomeController extends Controller
     }
     public function search(Request $request){
         if($request->ajax()){
-            $hirer_query = Employee::query();
-            if (request('search_txt')) {
-                $search_txt = strtoupper(request('search_txt'));
-                $hirer_query->whereJsonContains('skills', $search_txt);
+            $employee_ids = EmployeeSkills::select('employee_id')->where('skills','LIKE','%'.request('search_txt').'%')->get()->toArray();
+            $results = Employee::with('skills')->where('id', $employee_ids)->orderBy('id', 'DESC')->get();
+            foreach ($results as $result) {
+                $skills_array = [];
+                foreach ($result->skills as $skill) {
+                    $skills_array[] = $skill->skills;
+                }
+                $result->skill_text = implode(', ', $skills_array);
             }
-            $results = $hirer_query->orderBy('id', 'DESC')->get();
             return response()->json(['results' => $results], 201);
         }
     }
