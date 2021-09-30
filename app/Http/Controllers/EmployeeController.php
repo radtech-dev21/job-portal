@@ -3,12 +3,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\EmployeeSkills;
+use Illuminate\Support\Facades\DB;
+
 class EmployeeController extends Controller{
     
     /*function to load Employee Signup view*/
     public function index(){
         $id = auth()->id();//current user id
-        return view('employee-signup');
+        $employeeDetails = DB::table('users')
+             ->select('*')
+             ->where('id', '=', $id)
+             ->get();
+        return view('employee-signup', ['employeeDetails'=>json_encode($employeeDetails[0])]);
     }
     /*function to save Hirer data*/
     public function saveEmployee(Request $request){

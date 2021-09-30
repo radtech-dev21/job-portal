@@ -20,6 +20,7 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <form action="save_employee" method="POST">
+                        <!-- {{ $employeeDetails }} -->
                         @csrf
                         <h3  class="register-heading">Apply as an Employee</h3>
                         <div class="row register-form">
