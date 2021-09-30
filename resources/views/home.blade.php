@@ -23,10 +23,12 @@
                     <script type="text/template" id="search_template">
                         <% if(results.length !== 0) { %>
                             <% _.each(results, function(result, key){%>
-                                <label class="list-group-item py-3" for="listGroupCheckableRadios1">
-                                <%= result.name %>
+                                <label class="list-group-item py-3 mt-3" for="listGroupCheckableRadios1">
+                                Person <%= key+1 %>
                                     <span class="d-block small opacity-50"><%= result.skill_text %></span>
                                 </label>
+                                <div style="display: inline;border-right: 1px solid gray; padding:0 5px;"></div>
+
                             <% }); %>
                         <% } else { %>
                             <div class="alert alert-light" role="alert">
@@ -53,7 +55,7 @@
         </div>
         <div class="col-md-6 login-form-2">
             <div class="login-logo">
-                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                <img src="https://image.ibb.co/n7oTvU/logo_white.png"/>
             </div>
             <h3>I want to Hire</h3>
             <div class="form-group">

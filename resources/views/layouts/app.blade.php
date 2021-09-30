@@ -32,22 +32,35 @@
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         @guest
-                            <!-- @if (Route::has('login'))
+                            @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
-                            @if (Route::has('register'))
+                            <!-- @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif -->
                         @else
+                            @php
+                             $user = Auth::user();
+                             $disabled_class = '';
+                             if($user->email_is_verified == 0){
+                                $disabled_class = 'disabled';
+                             }elseif($user->phone_is_verified == 0){
+                                $disabled_class = 'disabled';
+                             }
+                            @endphp
                             @if(Auth::user()->role == 'hirer')
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('hirer') }}">{{ __('Hire') }}</a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{$disabled_class}}" href="{{ url('hirer') }}">{{ __('Hire') }}</a>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <a class="nav-link {{$disabled_class}}" href="{{ url('employee') }}">{{ __('Apply as an Employee') }}</a>
+                                </li>
                             @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

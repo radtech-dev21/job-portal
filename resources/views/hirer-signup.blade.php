@@ -19,7 +19,7 @@
                 <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <form action="save_hirer" method="POST">
                         @csrf
-                        <h3  class="register-heading">Apply as a Hirer</h3>
+                        <h3  class="register-heading">Hire</h3>
                         <div class="row register-form">
                             @if(Session::has('success'))
                             <div class="alert alert-success">
