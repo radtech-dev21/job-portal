@@ -44,16 +44,16 @@ class VerificationController extends Controller{
 
     public function verifiedUser(Request $request){
         $user = User::where('id', '=', Auth::user()->id)->first();
-        if($user != null){
+        if($user->email_is_verified == 0){
             $email_verification_code = $request->emailOtp;
-            if(($user->email_is_verified == 0) && ($user->email_verification_code == $email_verification_code)){
+            if(($user != null) && ($user->email_verification_code == $email_verification_code)){
                 $user->email_is_verified = 1;
                 $user->save();
                 return redirect()->route('home')->with(session()->flash('alert-success', 'Your email is verified.!'));
             }
-        }else if($user != null){
+        }else if($user->phone_is_verified == 0){
             $phone_verification_code = $request->phoneOtp;
-            if(($user->phone_is_verified == 0) && ($user->phone_verification_code == $phone_verification_code)){
+            if(($user != null) && ($user->phone_verification_code == $phone_verification_code)){
                 $user->phone_is_verified = 1;
                 $user->save();
                 return redirect()->route('home')->with(session()->flash('alert-success', 'Your phone number is verified.!'));
