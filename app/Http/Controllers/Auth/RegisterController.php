@@ -53,6 +53,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'phone_no' => ['required', 'string', 'phone_no', 'max:9', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -64,12 +65,13 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function register(Request $request)
-    {
+    protected function register(Request $request){
         $user = New User();
         $user->name = $request->name;
         $user->role = $request->role;
         $user->email = $request->email;
+        $user->phone_verification_code = 1234;
+        $user->phone_no = $request->phone_no;
         $user->password = Hash::make($request->password);
         $user->email_verification_code = rand(1000,9999);
         $user->save();
@@ -77,7 +79,6 @@ class RegisterController extends Controller
             MailController::sendSignupEmail($user->name, $user->email, $user->email_verification_code);
             return redirect()->route('login')->with(session()->flash('alert-success', 'Your account has been created. Please check email for verification code.'));
         }
-
         return redirect()->back()->with(session()->flash('alert-danger', 'Something went wrong!'));
     }
 

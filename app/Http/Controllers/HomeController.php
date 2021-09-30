@@ -26,7 +26,11 @@ class HomeController extends Controller
         if(Auth::user()->email_is_verified == ''){
             return view('auth.verify');
         }else{
-            return view('home');
+            if(Auth::user()->role == 'employee'){
+                return redirect()->route('employee');
+            }else{
+                return view('home');
+            }
         }
     }
     public function search(Request $request){

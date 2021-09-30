@@ -6,7 +6,6 @@
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/custom/custom.js') }}"></script>
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-<!------ Include the above in your HEAD tag -------- -->
 @extends('layouts.app')
 @section('content')
 <div class="container register">
@@ -44,9 +43,8 @@
                                         <input type="text" id="experience" name="experience" placeholder="Experience(in years) *" value="{{old('experience')}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                         <button type="button" id="inc" class="btn btn-info pull-right">+</button>
                                     </div>
-
                                     @if ($errors->has('experience'))
-                                    <span class="text-danger">{{ $errors->first('experience') }}</span>
+                                        <span class="text-danger">{{ $errors->first('experience') }}</span>
                                     @endif
                                 </div>
                                 <div class="form-group">
@@ -59,7 +57,7 @@
                                         <option value="Ahmedabad" <?php echo (old('location') && in_array('Ahmedabad', old('location'))) ? "selected" : "" ?>>Ahmedabad</option>
                                     </select>
                                     @if ($errors->has('location'))
-                                    <span class="text-danger">{{ $errors->first('location') }}</span>
+                                        <span class="text-danger">{{ $errors->first('location') }}</span>
                                     @endif
                                 </div>
                                 <div class="form-group">
@@ -72,7 +70,7 @@
                                         <option value="CSS" <?php echo (old('skills') && in_array('CSS', old('skills'))) ? "selected" : "" ?>>CSS</option>
                                     </select>
                                     @if ($errors->has('skills'))
-                                    <span class="text-danger">{{ $errors->first('skills') }}</span>
+                                        <span class="text-danger">{{ $errors->first('skills') }}</span>
                                     @endif
                                 </div>
                                 <input type="submit" class="btnRegister"  value="Apply"/>
