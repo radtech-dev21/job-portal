@@ -1,13 +1,12 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Employee;
 class EmployeeController extends Controller
 {
     /*function to load Employee Signup view*/
     public function index(){
+        $id = auth()->id();//current user id
         return view('employee-signup');
     }
 
