@@ -2,11 +2,19 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <div class="flash-message">
+            @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                @if(Session::has('alert-' . $msg))
+                    <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+                @endif
+            @endforeach
+        </div>
         <div class="col-md-6">
+            @if (Auth::user()->email_is_verified ==0)
             <div class="card">
                 <div class="card-header">{{ __('Verify Email') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="/verified">
+                    <form method="POST" action="{{ route('verifications')}}">
                         @csrf
                         <div class="form-group row">
                             <label for="staticEmail" class="col-sm-2 col-form-label">{{ __('E-Mail:-') }}</label>
@@ -16,7 +24,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-md-6">
-                                <input id="number" type="number" class="form-control @error('OTP') is-invalid @enderror" name="OTP"  required autofocus>
+                                <input id="number" type="number" class="form-control @error('OTP') is-invalid @enderror" name="emailOtp"  required autofocus>
                                 @error('OTP')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -26,18 +34,20 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <a type="submit" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">{{ __('Verify') }}</a>
+                                <button type="submit" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">{{ __('Verify') }}</button>
+                                <!-- <a type="submit" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">{{ __('Verify') }}</a> -->
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
+            @endif
         </div>
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">{{ __('Verify Phone No.') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="/verified">
+                    <form method="POST" action="{{ route('verifications')}}">
                         @csrf
                         <div class="form-group row">
                             <label for="staticEmail" class="col-sm-2 col-form-label">{{ __('Phone No:-') }}</label>
@@ -47,7 +57,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-md-6">
-                                <input id="number" type="number" class="form-control @error('OTP') is-invalid @enderror" name="OTP"  required autofocus>
+                                <input id="number" type="number" class="form-control @error('OTP') is-invalid @enderror" name="phoneOtp"  required autofocus>
                                 @error('OTP')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -57,7 +67,8 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <a type="submit" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">{{ __('Verify') }}</a>
+                                <button type="submit" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">{{ __('Verify') }}</button>
+                                <!-- <a type="submit" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">{{ __('Verify') }}</a> -->
                             </div>
                         </div>
                     </form>

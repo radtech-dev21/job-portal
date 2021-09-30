@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -36,20 +37,29 @@ class VerificationController extends Controller{
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
         // $this->middleware('signed')->only('verify');
         // $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
 
     public function verifiedUser(Request $request){
-        $verification_code = $request->OTP;
-        $user = User::where(['email_verification_code' => $verification_code])->first();
+        $user = User::where('id', '=', Auth::user()->id)->first();
         if($user != null){
-            $user->email_is_verified = 1;
-            $user->save();
-            return redirect()->route('home')->with(session()->flash('alert-success', 'Your account is verified.!'));
+            $email_verification_code = $request->emailOtp;
+            if(($user->email_is_verified == 0) && ($user->email_verification_code == $email_verification_code)){
+                $user->email_is_verified = 1;
+                $user->save();
+                return redirect()->route('home')->with(session()->flash('alert-success', 'Your email is verified.!'));
+            }
+        }else if($user != null){
+            $phone_verification_code = $request->phoneOtp;
+            if(($user->phone_is_verified == 0) && ($user->phone_verification_code == $phone_verification_code)){
+                $user->phone_is_verified = 1;
+                $user->save();
+                return redirect()->route('home')->with(session()->flash('alert-success', 'Your phone number is verified.!'));
+            }
         }
 
-        return redirect()->route('login')->with(session()->flash('alert-danger', 'Invalid verification code!'));
+        return redirect()->route('home')->with(session()->flash('alert-danger', 'Invalid verification code!'));
     }
 }

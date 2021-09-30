@@ -25,6 +25,8 @@ class HomeController extends Controller
     public function index(){
         if(Auth::user()->email_is_verified == ''){
             return view('auth.verify');
+        }else if (Auth::user()->phone_is_verified == ''){
+            return view('auth.verify');
         }else{
             if(Auth::user()->role == 'employee'){
                 return redirect()->route('employee');
