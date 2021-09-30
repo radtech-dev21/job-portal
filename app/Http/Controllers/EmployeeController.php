@@ -1,5 +1,8 @@
 <?php
 namespace App\Http\Controllers;
+
+use Auth;
+
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\EmployeeSkills;
@@ -9,6 +12,7 @@ class EmployeeController extends Controller{
 
 
     public function index(){
+
         $id = auth()->id();
         $employeeDetails = DB::table('employees')
         ->where('employees.id', '=', $id)
@@ -23,6 +27,11 @@ class EmployeeController extends Controller{
         }else{
             return view('employee-signup');
         }
+
+        if(Auth::user()->role == 'employee'){
+            return view('employee-signup');
+        }
+        abort(404);
     }
 
     public function saveEmployee(Request $request){

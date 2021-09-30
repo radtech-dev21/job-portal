@@ -49,15 +49,15 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'phone_no' => ['required', 'string', 'phone_no', 'max:9', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
+    // protected function validator(array $data)
+    // {
+    //     return Validator::make($data, [
+    //         'name' => ['required', 'string', 'max:255'],
+    //         'phone_no' => ['required', 'string', 'phone_no', '', 'unique:users'],
+    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+    //         'password' => ['required', 'string', 'min:8', 'confirmed'],
+    //     ]);
+    // }
 
     /**
      * Create a new user instance after a valid registration.
@@ -66,6 +66,12 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function register(Request $request){
+        $request->validate([
+          'name' => 'required',
+          'email' => 'required|unique:users|max:255',
+          'phone_no' => 'required|unique:users|max:10',
+          'password' => 'required|min:8|confirmed',
+        ]);
         $user = New User();
         $user->name = $request->name;
         $user->role = $request->role;

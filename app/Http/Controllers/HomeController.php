@@ -32,7 +32,6 @@ class HomeController extends Controller
                 return redirect()->route('employee');
             }
         }elseif ($user->role == 'hirer') {
-
             if($user->email_is_verified == ''){
                 return view('auth.verify');
             }else if ($user->phone_is_verified == ''){
@@ -44,7 +43,11 @@ class HomeController extends Controller
     }
     public function search(Request $request){
         if($request->ajax()){
-            $employee_ids = EmployeeSkills::where('skills','LIKE','%'.request('search_txt').'%')->pluck('employee_id')->toArray();
+            $employee_skils_query = EmployeeSkills::query();
+            if(request('skills')){
+                $employee_skils_query->whereIn('skills',request('skills'));
+            }
+            $employee_ids = $employee_skils_query->pluck('employee_id')->toArray();
             $results = Employee::with('skills')->whereIn('id', $employee_ids)->orderBy('id', 'DESC')->get();
             foreach ($results as $result) {
                 $skills_array = [];

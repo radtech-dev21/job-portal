@@ -13,6 +13,7 @@ use App\Http\Controllers\EmployeeController;
 |
 */
 Route::get('/', function () {
+	
 	return view('home');
 });
 Auth::routes();
@@ -27,3 +28,5 @@ Route::get('employee',[EmployeeController::class,'index'])->name('employee')->mi
 Route::post('save_employee',[EmployeeController::class, 'saveEmployee']);
 
 Route::post('verified', [App\Http\Controllers\Auth\VerificationController::class, 'verifiedUser'])->name('verifications');
+Route::get('resend-email-otp', [App\Http\Controllers\Auth\VerificationController::class, 'resendEmailOtp'])->name('emailOtp');
+Route::get('resend-phone-otp', [App\Http\Controllers\Auth\VerificationController::class, 'resendPhoneOtp'])->name('phoneOtp');

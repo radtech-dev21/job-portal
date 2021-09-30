@@ -36,7 +36,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">{{ __('Verify') }}</button>
-                                <!-- <a type="submit" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">{{ __('Verify') }}</a> -->
+                                <a href="resend-email-otp" class="primary text-decoration-none" tabindex="-1" aria-disabled="true">{{ __('Re-send OTP') }}</a>
                             </div>
                         </div>
                     </form>
@@ -69,7 +69,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">{{ __('Verify') }}</button>
-                                <!-- <a type="submit" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">{{ __('Verify') }}</a> -->
+                                <a href="resend-phone-otp" class="primary text-decoration-none" tabindex="-1" aria-disabled="true">{{ __('Re-send OTP') }}</a>
                             </div>
                         </div>
                     </form>
