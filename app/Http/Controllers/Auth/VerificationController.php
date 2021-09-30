@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use Auth;
+use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -61,5 +62,29 @@ class VerificationController extends Controller{
         }
 
         return redirect()->route('home')->with(session()->flash('alert-danger', 'Invalid verification code!'));
+    }
+    
+    public function resendEmailOtp(Request $request)
+    {
+        $user = User::where('id', '=', Auth::user()->id)->first();
+        if($user != null){
+            if($user->email_is_verified == 0){
+                $user->email_verification_code = rand(1000,9999);
+                $user->save();
+                    MailController::sendSignupEmail($user->name, $user->email, $user->email_verification_code);
+                    return redirect()->route('home')->with(session()->flash('alert-success', 'Your email verification OTP Re-sended.!'));
+            }
+        }
+    }
+    public function resendPhoneOtp(Request $request)
+    {
+        $user = User::where('id', '=', Auth::user()->id)->first();
+        if($user != null){
+            if($user->phone_is_verified == 0){
+                $user->phone_verification_code = 1234;
+                $user->save();
+                    return redirect()->route('home')->with(session()->flash('alert-success', 'Your phone verification OTP Re-sended.!'));
+            }
+        }
     }
 }
