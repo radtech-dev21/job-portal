@@ -20,10 +20,10 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
 
-Route::get('hirer',[HirerController::class,'index']);
-Route::post('save_hirer',[HirerController::class,'saveHirer']);
+Route::get('hirer',[HirerController::class,'index'])->middleware('auth');
+Route::post('hirer/save',[HirerController::class,'saveHirer']);
 Route::get('verify_user', [App\Http\Controllers\Auth\RegisterController::class, 'verifyUser'])->name('verified');
-Route::get('employee',[EmployeeController::class,'index'])->name('employee');
-Route::post('save_employee',[EmployeeController::class,'saveEmployee']);
+Route::get('employee',[EmployeeController::class,'index'])->name('employee')->middleware('auth');
+Route::post('save_employee',[EmployeeController::class, 'saveEmployee']);
 
 Route::post('verified', [App\Http\Controllers\Auth\VerificationController::class, 'verifiedUser'])->name('verifications');
