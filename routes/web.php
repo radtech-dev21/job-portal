@@ -13,6 +13,7 @@ use App\Http\Controllers\EmployeeController;
 |
 */
 Route::get('/', function () {
+	
 	return view('home');
 });
 Auth::routes();

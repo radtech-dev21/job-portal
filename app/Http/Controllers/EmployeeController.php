@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\EmployeeSkills;
@@ -9,7 +9,10 @@ class EmployeeController extends Controller{
     
     /*function to load Employee Signup view*/
     public function index(){
-        return view('employee-signup');
+        if(Auth::user()->role == 'employee'){
+            return view('employee-signup');
+        }
+        abort(404);
     }
     /*function to save Hirer data*/
     public function saveEmployee(Request $request){
