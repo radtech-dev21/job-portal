@@ -16,9 +16,8 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->string('name',30);
-            $table->json('skills');
-            $table->float('experience');
             $table->json('locations');
+            $table->float('experience');
             $table->float('current_ctc');
             $table->float('expected_ctc');
             $table->integer('notice_period');
