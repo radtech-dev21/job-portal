@@ -17,7 +17,7 @@
         <div class="col-md-9 register-right">
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <form action="save_hirer" method="POST">
+                    <form action="{{url('hirer/save')}}" method="POST">
                         @csrf
                         <h3  class="register-heading">Hire</h3>
                         <div class="row register-form">
@@ -88,7 +88,7 @@
                                         <span class="text-danger">{{ $errors->first('skills') }}</span>
                                     @endif
                                 </div>
-                                <input type="submit" class="btnRegister"  value="Apply"/>
+                                <button type="submit" class="btnRegister">Apply</button>
                             </div>
                         </div>
                     </form>

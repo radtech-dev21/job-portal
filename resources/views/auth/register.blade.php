@@ -42,7 +42,7 @@
                         <div class="form-group row">
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
                             <div class="col-md-6">
-                                <input id="phone" type="number" placeholder="+91 ********" class="form-control @error('phone') is-invalid @enderror" name="phone_no" value="{{ old('phone_no') }}" required autocomplete="phone">
+                            <input id="phone" type="tel" placeholder="+91 ********" class="form-control @error('phone') is-invalid @enderror" name="phone_no" value="{{ old('phone_no') }}" pattern="[0-9]{10}" required autocomplete="phone">
                                 @error('phone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
