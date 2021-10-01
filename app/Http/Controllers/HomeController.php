@@ -24,17 +24,17 @@ class HomeController extends Controller
     public function index(){
         $user = Auth::user();
         if($user->role == 'employee'){
-            if($user->email_is_verified == ''){
+            if($user->email_is_verified == 0){
                 return view('auth.verify');
-            }else if ($user->phone_is_verified == ''){
+            }else if ($user->phone_is_verified == 0){
                 return view('auth.verify');
             }else{
                 return redirect()->route('employee');
             }
         }elseif ($user->role == 'hirer') {
-            if($user->email_is_verified == ''){
+            if($user->email_is_verified == 0){
                 return view('auth.verify');
-            }else if ($user->phone_is_verified == ''){
+            }else if ($user->phone_is_verified == 0){
                 return view('auth.verify');
             }else{
                 return view('home');
