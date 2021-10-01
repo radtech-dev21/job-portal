@@ -21,7 +21,7 @@
 
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" id="bootstrap-css">
 
-    <!-- script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="https://fanbasis.com/js/underscore.min.js" type="text/javascript"></script>
 </head>
