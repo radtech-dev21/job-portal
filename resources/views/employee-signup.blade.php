@@ -1,11 +1,4 @@
-<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" id="bootstrap-css">
-<script src="{{ asset('js/jquery-3.3.1.slim.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" id="bootstrap-css">
 <link href="{{ asset('css/bootstrap-select.min.css') }}" rel="stylesheet" id="bootstrap-css">
-<script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/custom/auth.js') }}"></script>
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 <!------ Include the above in your HEAD tag ---------->
 @extends('layouts.app')
@@ -53,7 +46,7 @@
                                 <div class="form-group">
                                     <select multiple name="skills[]" id="skills" class="{{ $errors->has('skills') ? ' is-invalid' : '' }} selectpicker w-100" data-style="bg-white px-4 py-3 shadow-sm " title="Select Skills *">
                                         <option value="PHP" <?php echo (in_array('PHP', $values) || (old('skills') && in_array('PHP', old('skills')))) ? "selected" : ""; ?>  >Php</option>
-                                        <option value="JQuery" <?php echo (old('skills') && in_array('JQuery', old('skills'))) ? "selected" : "" ?>>Jquery</option>
+                                        <option value="JQuery" <?php echo (old('skills') && in_array('JQuery', old('skills'))) ? "selected" : "" ?>>JQuery</option>
                                         <option value="Javascript" <?php echo (in_array('Javascript', $values) || (old('skills') && in_array('Javascript', old('skills')))) ? "selected" : ""; ?>>Javascript</option>
                                         <option value="HTML" <?php echo (in_array('HTML', $values) || (old('skills') && in_array('HTML', old('skills')))) ? "selected" : ""; ?>>HTML</option>
                                         <option value="CSS" <?php echo (in_array('CSS', $values) || (old('skills') && in_array('CSS', old('skills')))) ? "selected" : ""; ?>>CSS</option>
@@ -142,6 +135,10 @@
         </div>
     </div>
 </div>
+
+<script src="{{ asset('js/popper.js') }}"></script>
+<script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
+<script src="{{ asset('js/custom/auth.js') }}"></script>
 <script>
     $(function () {
         $('.selectpicker').selectpicker();
