@@ -12,24 +12,24 @@ class EmployeeController extends Controller{
 
 
     public function index(){
-
         $id = auth()->id();
         $employeeDetails = DB::table('employees')
-        ->where('employees.id', '=', $id)
+        ->where('employees.user_id', '=', $id)
         ->groupBy('employees.id')
         ->join('employee_skills', 'employees.id', '=', 'employee_skills.employee_id')
         ->select('employees.*')
         ->selectRaw('GROUP_CONCAT(employee_skills.skills) as skills')
         ->get();
+        $data = array();
         if(!empty($employeeDetails[0])){
             $data = (array)$employeeDetails[0];
             return view('employee-signup', ['employeeDetails'=>$data]);
         }else{
-            return view('employee-signup');
+            return view('employee-signup', ['employeeDetails'=>$data]);
         }
 
         if(Auth::user()->role == 'employee'){
-            return view('employee-signup');
+            return view('employee-signup', ['employeeDetails'=>$data]);
         }
         abort(404);
     }
@@ -64,12 +64,15 @@ class EmployeeController extends Controller{
         $employee->current_ctc     = $validatedData['current_ctc'];
         $employee->expected_ctc    = $validatedData['expected_ctc'];
         $employee->notice_period   = $validatedData['notice_period'];
+        $employee->user_id         = auth()->id();
         $employee->locations       = json_encode($validatedData['locations']);
         if($userId){
             DB::table('employee_skills')->where('employee_id', $userId)->delete();
             $employee->update();
         }else{
             $employee->save();
+            $employeeID = $employee->id;
+            $request->session()->put('employee-id',$employeeID);
         }
         foreach ($validatedData['skills'] as $skills) {
             $EmployeeSkills = new EmployeeSkills();
