@@ -37,10 +37,16 @@ class HomeController extends Controller
             }else if ($user->phone_is_verified == 0){
                 return view('auth.verify');
             }else{
-                return view('home');
+                return redirect()->route('hirer');
             }
         }
     }
+
+    public function searchProfile()
+    {
+        return view('searchProfile');
+    }
+
     public function search(Request $request){
         if($request->ajax()){
             $employee_skils_query = EmployeeSkills::query();

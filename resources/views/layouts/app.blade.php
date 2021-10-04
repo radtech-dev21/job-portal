@@ -68,7 +68,7 @@
                             @else
                                 @if(empty($employeeDetails))
                                     <li class="nav-item">
-                                        <a class="nav-link {{$disabled_class}}" href="{{ url('employee') }}">{{ __('Apply as an Employee') }}</a>
+                                        <a class="nav-link {{$disabled_class}}" href="{{ url('employee-add') }}">{{ __('Apply as an Employee') }}</a>
                                     </li>
                                 @endif
                             @endif

@@ -126,6 +126,7 @@
                                     <span class="text-danger">{{ $errors->first('notice_period') }}</span>
                                     @endif
                                 </div>
+                                <a href="{{ url('employee') }}" class="btn btn-primary btnRegister" tabindex="-1" role="button">{{ __('Back') }}</a>
                                 <input type="submit" class="btnRegister"  value="Apply"/>
                             </div>
                         </div>

@@ -17,7 +17,7 @@
         </div>
         <div class="col-md-9 register-right">
             <div class="tab-content" id="myTabContent">
-                <h3  class="register-heading"><a href="{{ url('searchProfile') }}" class="btn btn-primary btn-lg" tabindex="-1" role="button">{{ __('Search Profile') }}</a></h3>
+                <h3  class="register-heading">Add Your Skills</h3>
             </div>
         </div>
     </div>

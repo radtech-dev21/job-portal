@@ -6,6 +6,10 @@ use App\Models\Hirer;
 use Illuminate\Http\Request;
 class HirerController extends Controller
 {
+    public function hirerDashboard(){
+
+        return view('hirerDashboard');
+    }
     public function index(){
         
         return view('hirer-signup');
