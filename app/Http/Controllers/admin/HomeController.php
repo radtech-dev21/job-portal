@@ -5,11 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Admin\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
 
     public function index(){
-        return view('admin/dashboard');
+    	$user = auth()->user();
+    	if(!empty($user)){
+	        if($user->role != 'Admin'){
+	            return redirect('/admin/login');
+	        }else{
+	            return view('admin/dashboard');
+	        }
+	    }else{
+	    	return redirect('/admin/login');
+	    }
     }
 }
