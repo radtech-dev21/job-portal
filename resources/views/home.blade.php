@@ -4,7 +4,7 @@
 <link href="{{ asset('css/bootstrap-select.min.css') }}" rel="stylesheet" id="bootstrap-css">
 <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/custom/custom.js') }}"></script>
+<!-- <script src="{{ asset('js/custom/custom.js') }}"></script> -->
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 @extends('layouts.app')
 @section('content')
@@ -21,12 +21,12 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col">
-                                      <input type="text" class="form-control" placeholder="Position *" id="position" />
+                                      <input type="text" class="form-control" placeholder="Position *" id="position"/>
                                     </div>
                                     <div class="col">
                                         <div id="sinolo" class="form-control">
                                           <button type="button" id="dec" class="btn btn-info pull-left">-</button>
-                                          <input type="text" id="experience" name="experience" placeholder="Experience(in years) *" value="{{old('experience')}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                          <input type="text" id="experience" placeholder="Experience(in years) *" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                           <button type="button" id="inc" class="btn btn-info pull-right">+</button>
                                         </div>
                                     </div>
