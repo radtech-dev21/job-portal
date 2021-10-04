@@ -21,12 +21,12 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col">
-                                      <input type="text" class="form-control" placeholder="Position *" id="position" />
+                                      <input type="text" class="form-control" placeholder="Position *" id="position"/>
                                     </div>
                                     <div class="col">
                                         <div id="sinolo" class="form-control">
                                           <button type="button" id="dec" class="btn btn-info pull-left">-</button>
-                                          <input type="text" id="experience" name="experience" placeholder="Experience(in years) *" value="{{old('experience')}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                          <input type="text" id="experience" placeholder="Experience(in years) *" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                           <button type="button" id="inc" class="btn btn-info pull-right">+</button>
                                         </div>
                                     </div>
