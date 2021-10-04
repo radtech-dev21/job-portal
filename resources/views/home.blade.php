@@ -4,7 +4,7 @@
 <link href="{{ asset('css/bootstrap-select.min.css') }}" rel="stylesheet" id="bootstrap-css">
 <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/custom/custom.js') }}"></script>
+<!-- <script src="{{ asset('js/custom/custom.js') }}"></script> -->
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 @extends('layouts.app')
 @section('content')
