@@ -1,5 +1,7 @@
 @auth()
-    @include('admin.layouts.navbars.navs.auth')
+	@if(auth()->user()->role == 'Admin')
+    	@include('admin.layouts.navbars.navs.auth')
+    @endif
 @endauth
     
 @guest()

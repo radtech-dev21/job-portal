@@ -2,7 +2,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HirerController;
 use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\Admin\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,4 +34,7 @@ Route::get('resend-phone-otp', [App\Http\Controllers\Auth\VerificationController
 
 
 //Admin Routes
-Route::get('/admin', [App\Http\Controllers\Admin\LoginController::class, 'index']);
+Route::get('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'index']);
+Route::get('/admin/dashboard', [App\Http\Controllers\Admin\HomeController::class, 'index']);
+Route::post('/admin/verify_user', [App\Http\Controllers\Admin\Auth\LoginController::class, 'verifyUser']);
+Route::get('/admin/logout', [App\Http\Controllers\Admin\Auth\LoginController::class, 'logout']);
