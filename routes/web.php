@@ -31,8 +31,6 @@ Route::get('resend-email-otp', [App\Http\Controllers\Auth\VerificationController
 Route::get('resend-phone-otp', [App\Http\Controllers\Auth\VerificationController::class, 'resendPhoneOtp'])->name('phoneOtp');
 
 
-
-
 Route::get('hirer',[HirerController::class,'index'])->name('hirer')->middleware('auth');
 Route::post('hirer/save',[HirerController::class,'saveHirer']);
 

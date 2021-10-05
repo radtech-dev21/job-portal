@@ -185,3 +185,9 @@ body {
     animation: mover 1s infinite  alternate;
     margin-left : 100px;
 }
+
+.connect-btn{
+    float: right;
+    margin-right: 40%;
+    color: #fff !important;
+}
