@@ -62,17 +62,17 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/dashboard">
-                        <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
+                        <i class="ni ni-tv-2 text-default"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/hirer">
-                        <i class="ni ni-tv-2 text-primary"></i> {{ __('Hirer') }}
+                        <i class="ni ni-bullet-list-67 text-default"></i> {{ __('Hirer') }}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/employee">
-                        <i class="ni ni-tv-2 text-primary"></i> {{ __('Employee') }}
+                        <i class="ni ni-bullet-list-67 text-default"></i> {{ __('Employee') }}
                     </a>
                 </li>
             </ul>
