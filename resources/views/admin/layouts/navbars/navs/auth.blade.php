@@ -21,8 +21,7 @@
                     <div class=" dropdown-header noti-title">
                         <h6 class="text-overflow m-0">{{ __('Welcome!') }}</h6>
                     </div>
-                    <a href="/admin/logout" class="dropdown-item" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
+                    <a href="/admin/logout" class="dropdown-item">
                         <i class="ni ni-user-run"></i>
                         <span>{{ __('Logout') }}</span>
                     </a>

@@ -42,7 +42,7 @@ Route::post('hirer/save',[HirerController::class,'saveHirer']);
 Route::get('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'index']);
 Route::get('/admin/dashboard', [App\Http\Controllers\Admin\HomeController::class, 'index']);
 Route::post('/admin/verify_user', [App\Http\Controllers\Admin\Auth\LoginController::class, 'verifyUser']);
-Route::get('/admin/logout', [App\Http\Controllers\Admin\Auth\LoginController::class, 'logout']);
+Route::post('/admin/logout', [App\Http\Controllers\Admin\Auth\LoginController::class, 'logout']);
 
 
 Route::get('hirer', [HirerController::class, 'index'])->name('hirer')->middleware('auth');

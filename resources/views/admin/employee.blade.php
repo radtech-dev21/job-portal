@@ -28,19 +28,17 @@
 	<script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
 	<script type="text/javascript">
 		$(function() {
-			var i = 1;
 			var table = $('#data-table').DataTable({
 				processing: true,
 				serverSide: true,
 				ajax: "/admin/employee",
 				columns: [
-				{
-					orderable: false,
-                    searchable: false,
-                    "render": function() {
-                        return i++;
-                    }
-                },
+				{	
+					data: 'DT_RowIndex', 
+					name: '', 
+					orderable: false, 
+					searchable: false
+				},
 				{
 					data: 'name',
 					name: 'name'
