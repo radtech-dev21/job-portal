@@ -7,7 +7,7 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Argon Dashboard') }}</title>
+        <title>{{ config('app.name', 'Job Portal Admin') }}</title>
         <!-- Favicon -->
         <!-- <link href="{{ asset('argon') }}/img/brand/favicon.png" rel="icon" type="image/png"> -->
         <!-- Fonts -->
@@ -19,6 +19,7 @@
         <link href="{{ asset('admin_public/css/all.min.css') }}" rel="stylesheet">
         <!-- Argon CSS -->
         <link type="text/css" href="{{ asset('admin_public/css/argon.css') }}" rel="stylesheet">
+        <script src="{{ asset('/js/jquery.min.js') }}"></script>
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -37,8 +38,8 @@
             @include('admin.layouts.footers.guest')
         @endguest
 
-        <script src="{{ asset('admin_public/js/jquery.min.js') }}"></script>
-        <script src="{{ asset('admin_public/js/bootstrap.bundle.min.js') }}"></script>
+        
+        <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
         
         @stack('js')
         

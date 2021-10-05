@@ -44,5 +44,5 @@ Route::get('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::cla
 Route::get('/admin/dashboard', [App\Http\Controllers\Admin\HomeController::class, 'index']);
 Route::post('/admin/verify_user', [App\Http\Controllers\Admin\Auth\LoginController::class, 'verifyUser']);
 Route::get('/admin/logout', [App\Http\Controllers\Admin\Auth\LoginController::class, 'logout']);
-Route::get('/admin/hirer', [App\Http\Controllers\Admin\HirerController::class, 'logout']);
-Route::get('/admin/employee', [App\Http\Controllers\Admin\EmployeeController::class, 'logout']);
+Route::get('/admin/hirer', [App\Http\Controllers\Admin\HirerController::class, 'index']);
+Route::get('/admin/employee', [App\Http\Controllers\Admin\EmployeeController::class, 'index']);

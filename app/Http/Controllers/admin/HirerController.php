@@ -13,7 +13,9 @@ class HirerController extends Controller
 	        if($user->role != 'Admin'){
 	            return redirect('/admin/login');
 	        }else{
-	            return view('admin/hirer');
+	            $data = array();
+	        	$data['page_name'] = 'Hirer List';
+	            return view('admin/hirer',array('data' => $data));
 	        }
 	    }else{
 	    	return redirect('/admin/login');
