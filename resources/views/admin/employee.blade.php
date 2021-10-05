@@ -35,8 +35,11 @@
 				ajax: "/admin/employee",
 				columns: [
 				{
-					data: 'DT_Row_Index', 
-					name: 'DT_Row_Index'
+					orderable: false,
+                    searchable: false,
+                    "render": function() {
+                        return i++;
+                    }
                 },
 				{
 					data: 'name',
