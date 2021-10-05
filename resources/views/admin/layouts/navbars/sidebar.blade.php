@@ -75,11 +75,6 @@
                         <i class="ni ni-tv-2 text-primary"></i> {{ __('Employee') }}
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/logout">
-                        <i class="ni ni-circle-08 text-pink"></i> {{ __('Logout') }}
-                    </a>
-                </li>
             </ul>
             
         </div>
