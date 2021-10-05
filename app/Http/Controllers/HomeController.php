@@ -65,12 +65,4 @@ class HomeController extends Controller
             return response()->json(['results' => $results], 201);
         }
     }
-
-    /*function to send connection request*/
-    public function sendConnectionRequest(Request $request){
-        if($request->ajax()){
-           $employeeID = $request->emp_id;
-           $hirerID = 
-        }
-    }
 }
