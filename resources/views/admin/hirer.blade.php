@@ -8,4 +8,3 @@
     </div>
      <!-- @include('admin.layouts.footers.auth') -->
 @endsection
-

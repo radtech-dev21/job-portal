@@ -7,5 +7,16 @@ use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
-    //
+    public function index(){
+    	$user = auth()->user();
+    	if(!empty($user)){
+	        if($user->role != 'Admin'){
+	            return redirect('/admin/login');
+	        }else{
+	            return view('admin/employee');
+	        }
+	    }else{
+	    	return redirect('/admin/login');
+	    }
+    }
 }

@@ -30,13 +30,6 @@ Route::get('resend-phone-otp', [App\Http\Controllers\Auth\VerificationController
 
 
 
-//Admin Routes
-Route::get('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'index']);
-Route::get('/admin/dashboard', [App\Http\Controllers\Admin\HomeController::class, 'index']);
-Route::post('/admin/verify_user', [App\Http\Controllers\Admin\Auth\LoginController::class, 'verifyUser']);
-Route::get('/admin/logout', [App\Http\Controllers\Admin\Auth\LoginController::class, 'logout']);
-
-
 Route::get('hirer',[HirerController::class,'index'])->name('hirer')->middleware('auth');
 Route::post('hirer/save',[HirerController::class,'saveHirer']);
 
@@ -45,3 +38,11 @@ Route::get('employee',[EmployeeController::class,'employeeDashboard'])->name('em
 Route::get('employee-add',[EmployeeController::class,'index'])->name('employeeAdd')->middleware('auth');
 Route::post('save_employee',[EmployeeController::class, 'saveEmployee']);
 
+
+//Admin Routes
+Route::get('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'index']);
+Route::get('/admin/dashboard', [App\Http\Controllers\Admin\HomeController::class, 'index']);
+Route::post('/admin/verify_user', [App\Http\Controllers\Admin\Auth\LoginController::class, 'verifyUser']);
+Route::get('/admin/logout', [App\Http\Controllers\Admin\Auth\LoginController::class, 'logout']);
+Route::get('/admin/hirer', [App\Http\Controllers\Admin\HirerController::class, 'logout']);
+Route::get('/admin/employee', [App\Http\Controllers\Admin\EmployeeController::class, 'logout']);
