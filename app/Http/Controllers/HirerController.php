@@ -6,10 +6,6 @@ use App\Models\Hirer;
 use Illuminate\Http\Request;
 class HirerController extends Controller
 {
-    public function hirerDashboard(){
-
-        return view('hirerDashboard');
-    }
     public function index(){
         
         return view('hirer-signup');
@@ -40,5 +36,11 @@ class HirerController extends Controller
         } catch (Exception $e) {
             dd($e->getMesaage());
         }
+    }
+
+
+    public function chatView()
+    {
+        return view('chat.hirerChatInbox');
     }
 }

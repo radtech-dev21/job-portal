@@ -1,7 +1,10 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HirerController;
 use App\Http\Controllers\EmployeeController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,12 +15,13 @@ use App\Http\Controllers\EmployeeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function () {
-	
+
 	return view('home');
 });
 Auth::routes();
-// Auth::routes(['verify' => true]);
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
 Route::get('/searchProfile', [App\Http\Controllers\HomeController::class, 'searchProfile'])->name('searchProfile');
@@ -37,11 +41,17 @@ Route::post('/admin/verify_user', [App\Http\Controllers\Admin\Auth\LoginControll
 Route::get('/admin/logout', [App\Http\Controllers\Admin\Auth\LoginController::class, 'logout']);
 
 
-Route::get('hirer',[HirerController::class,'index'])->name('hirer')->middleware('auth');
-Route::post('hirer/save',[HirerController::class,'saveHirer']);
+Route::get('hirer', [HirerController::class, 'index'])->name('hirer')->middleware('auth');
+Route::post('hirer/save', [HirerController::class, 'saveHirer']);
 
 /* Employee Api */
-Route::get('employee',[EmployeeController::class,'employeeDashboard'])->name('employee')->middleware('auth');
-Route::get('employee-add',[EmployeeController::class,'index'])->name('employeeAdd')->middleware('auth');
-Route::post('save_employee',[EmployeeController::class, 'saveEmployee']);
+Route::get('employee', [EmployeeController::class, 'employeeDashboard'])->name('employee')->middleware('auth');
+Route::get('employee-add', [EmployeeController::class, 'index'])->name('employeeAdd')->middleware('auth');
+Route::post('save_employee', [EmployeeController::class, 'saveEmployee']);
 
+Route::group([Auth::check() => 'role:hirer'], function () {
+	Route::get('chat', [HirerController::class, 'chatView']);
+});
+Route::group([Auth::check() => 'role:employee'], function () {
+	Route::get('chat', [EmployeeController::class, 'chatView']);
+});

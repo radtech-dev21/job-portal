@@ -94,4 +94,9 @@ class EmployeeController extends Controller
             return redirect()->back()->with('success', 'Employee Updated Successfully');
         }
     }
+
+    public function chatView()
+    {
+        return view('chat.employeeChatInbox');
+    }
 }

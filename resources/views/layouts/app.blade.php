@@ -61,6 +61,9 @@
                                 $disabled_class = 'disabled';
                              }
                             @endphp
+                            <li class="nav-item">
+                                <a class="nav-link {{$disabled_class}}" href="{{ url('chat') }}">{{ __('Chat') }}</a>
+                            </li>
                             @if(Auth::user()->role == 'hirer')
                                 <li class="nav-item">
                                     <a class="nav-link {{$disabled_class}}" href="{{ url('hirer') }}">{{ __('Hire') }}</a>
