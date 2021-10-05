@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HirerController;
+
 
 use Illuminate\Support\Facades\Auth;
 
@@ -29,31 +29,6 @@ Route::get('verify_user', [App\Http\Controllers\Auth\RegisterController::class, 
 Route::post('verified', [App\Http\Controllers\Auth\VerificationController::class, 'verifiedUser'])->name('verifications');
 Route::get('resend-email-otp', [App\Http\Controllers\Auth\VerificationController::class, 'resendEmailOtp'])->name('emailOtp');
 Route::get('resend-phone-otp', [App\Http\Controllers\Auth\VerificationController::class, 'resendPhoneOtp'])->name('phoneOtp');
-
-
-
-
-Route::get('hirer',[HirerController::class,'index'])->name('hirer')->middleware('auth');
-Route::post('hirer/save',[HirerController::class,'saveHirer']);
-
-Route::get('hirer', [HirerController::class, 'index'])->name('hirer')->middleware('auth');
-Route::post('hirer/save', [HirerController::class, 'saveHirer']);
-
-/* Employee Api */
-Route::get('employee', [EmployeeController::class, 'employeeDashboard'])->name('employee')->middleware('auth');
-Route::get('employee-add', [EmployeeController::class, 'index'])->name('employeeAdd')->middleware('auth');
-Route::post('save_employee', [EmployeeController::class, 'saveEmployee']);
-
-
-//Admin Routes
-Route::get('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'index']);
-Route::get('/admin/dashboard', [App\Http\Controllers\Admin\HomeController::class, 'index']);
-Route::post('/admin/verify_user', [App\Http\Controllers\Admin\Auth\LoginController::class, 'verifyUser']);
-Route::get('/admin/logout', [App\Http\Controllers\Admin\Auth\LoginController::class, 'logout']);
-Route::get('/admin/hirer', [App\Http\Controllers\Admin\HirerController::class, 'index']);
-Route::get('/admin/employee', [App\Http\Controllers\Admin\EmployeeController::class, 'index']);
-
-
 Route::group([Auth::check() => 'role:hirer'], function () {
 	Route::get('chat', [HirerController::class, 'chatView']);
 });
