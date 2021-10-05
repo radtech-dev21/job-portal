@@ -19,8 +19,7 @@ class EmployeeController extends Controller
 	        	$data['page_name'] = 'Employee List';
 
 	        	if ($request->ajax()) {
-	        		$data = User::select('*');
-	        		//$data = User::select('*')->where('role','=','employee');
+	        		$data = User::select('*')->where('role','=','employee');
 	        		return Datatables::of($data)
 	        		->addIndexColumn()
 	        		->make(true);

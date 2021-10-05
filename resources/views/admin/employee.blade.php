@@ -14,6 +14,7 @@
 							<th>Number</th>
 							<th>Name</th>
 							<th>Email</th>
+							<th>Phone No.</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -27,14 +28,16 @@
 	<script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
 	<script type="text/javascript">
 		$(function() {
+			var i = 1;
 			var table = $('#data-table').DataTable({
 				processing: true,
 				serverSide: true,
 				ajax: "/admin/employee",
-				columns: [{
-					data: 'id',
-					name: 'id'
-				},
+				columns: [
+				{
+					data: 'DT_Row_Index', 
+					name: 'DT_Row_Index'
+                },
 				{
 					data: 'name',
 					name: 'name'
@@ -42,6 +45,10 @@
 				{
 					data: 'email',
 					name: 'email'
+				},
+				{
+					data: 'phone_no',
+					name: 'phone_no'
 				},
 				]
 			});
