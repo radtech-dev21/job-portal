@@ -33,7 +33,6 @@ class EmployeeController extends Controller
         } else {
             return view('employee-signup', ['employeeDetails' => $data]);
         }
-
         if (Auth::user()->role == 'employee') {
             return view('employee-signup', ['employeeDetails' => $data]);
         }
@@ -60,11 +59,10 @@ class EmployeeController extends Controller
             'expected_ctc.required' => 'Expected CTC is required',
             'notice_period.required' => 'Notice Period is required'
         ]);
-
         if ($userId) {
             $employee = Employee::find($userId);
         } else {
-            $employee                  = new Employee;
+            $employee = new Employee;
         }
         $employee->name            = $validatedData['name'];
         $employee->experience      = $validatedData['experience'];
@@ -87,7 +85,6 @@ class EmployeeController extends Controller
             $EmployeeSkills->employee_id = $employee->id;
             $EmployeeSkills->save();
         }
-
         if (!$userId) {
             return back()->with('success', 'Employee Created Successfully');
         } else {

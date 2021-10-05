@@ -29,7 +29,7 @@ class HomeController extends Controller
             }else if ($user->phone_is_verified == 0){
                 return view('auth.verify');
             }else{
-                return redirect()->route('employee');
+                return redirect()->route('employee-dashboard');
             }
         }elseif ($user->role == 'hirer') {
             if($user->email_is_verified == 0){
@@ -37,7 +37,7 @@ class HomeController extends Controller
             }else if ($user->phone_is_verified == 0){
                 return view('auth.verify');
             }else{
-                return redirect()->route('hirer');
+                return redirect()->route('hirer-dashboard');
             }
         }
     }

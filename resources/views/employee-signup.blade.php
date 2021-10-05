@@ -35,14 +35,11 @@
                                 @php 
                                 $values = array();
                                 @endphp 
-
                                 @if(!empty($employeeDetails['skills']))
                                 @php
                                 $values = explode(",",$employeeDetails['skills']);
                                 @endphp
                                 @endif
-
-
                                 <div class="form-group">
                                     <select multiple name="skills[]" id="skills" class="{{ $errors->has('skills') ? ' is-invalid' : '' }} selectpicker w-100" data-style="bg-white px-4 py-3 shadow-sm " title="Select Skills *">
                                         <option value="PHP" <?php echo (in_array('PHP', $values) || (old('skills') && in_array('PHP', old('skills')))) ? "selected" : ""; ?>  >Php</option>
