@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HirerController;
+use App\Http\Controllers\EmployeeController;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -53,12 +54,13 @@ Route::get('/admin/logout', [App\Http\Controllers\Admin\Auth\LoginController::cl
 Route::get('/admin/hirer', [App\Http\Controllers\Admin\HirerController::class, 'index']);
 Route::get('/admin/employee', [App\Http\Controllers\Admin\EmployeeController::class, 'index']);
 
-
-Route::group([Auth::check() => 'role:hirer'], function () {
-	Route::get('chat', [HirerController::class, 'chatView']);
+Route::group(['prefix' => 'employee',  'middleware' => 'auth'], function(){
+	Route::get('chat', [EmployeeController::class, 'chatView'])->name('employee-chat');
 });
+
 Route::group(['prefix' => 'hirer',  'middleware' => 'auth'], function(){
 	Route::post('save',[HirerController::class,'saveHirer']);
 	Route::get('dashboard',[HirerController::class,'index'])->name('hirer-dashboard')->middleware('auth');
+	Route::get('chat', [HirerController::class, 'chatView'])->name('hirer-chat');
 });
 

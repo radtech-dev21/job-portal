@@ -38,11 +38,19 @@
                              }
                             @endphp
                             @if(Auth::user()->role != 'hirer')
+                            <li class="nav-item">
+                                <a class="nav-link {{$disabled_class}}" href="{{ route('employee-chat') }}">{{ __('Chat') }}</a>
+                            </li>
                                 @if(empty($employeeDetails))
                                     <li class="nav-item">
                                         <a class="nav-link {{$disabled_class}}" href="{{ route('addEmployee') }}">{{ __('Apply as an Employee') }}</a>
                                     </li>
                                 @endif
+                            @endif
+                            @if(Auth::user()->role == 'hirer')
+                            <li class="nav-item">
+                                <a class="nav-link {{$disabled_class}}" href="{{ route('hirer-chat') }}">{{ __('Chat') }}</a>
+                            </li>
                             @endif
                             <li class="nav-item dropdown d-flex">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

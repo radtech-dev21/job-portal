@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Employee;
 use App\Models\EmployeeSkills;
 use Illuminate\Support\Facades\DB;
@@ -94,6 +95,8 @@ class EmployeeController extends Controller
 
     public function chatView()
     {
-        return view('chat.employeeChatInbox');
+        $hirer = User::where('role', '=', 'hirer')->get();
+
+        return view('chat.employeeChatInbox',['hirer_data'=>$hirer->toArray()]);
     }
 }
