@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-Route::get('/home', [Acpp\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
 Route::get('/searchProfile', [App\Http\Controllers\HomeController::class, 'searchProfile'])->name('searchProfile');
 /* verification Api */
@@ -30,12 +30,5 @@ Route::post('verified', [App\Http\Controllers\Auth\VerificationController::class
 Route::get('resend-email-otp', [App\Http\Controllers\Auth\VerificationController::class, 'resendEmailOtp'])->name('emailOtp');
 Route::get('resend-phone-otp', [App\Http\Controllers\Auth\VerificationController::class, 'resendPhoneOtp'])->name('phoneOtp');
 
-Route::group([Auth::check() => 'role:hirer'], function () {
-	Route::get('chat', [HirerController::class, 'chatView']);
-});
-Route::group(['prefix' => 'hirer',  'middleware' => 'auth'], function(){
-	Route::post('save',[HirerController::class,'saveHirer']);
-	Route::get('dashboard',[HirerController::class,'index'])->name('hirer-dashboard')->middleware('auth');
-});
 Route::get('sendConnectionRequest', [App\Http\Controllers\ConnectionController::class, 'sendConnectionRequest'])->name('sendConnectionRequest');
 
