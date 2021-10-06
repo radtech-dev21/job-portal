@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
    <link rel="stylesheet" href={{ asset('css/app.css') }}>
+   <script src="{{ asset('js/jquery.min.js') }}"></script>
 </head>
 <body>
     <div id="app">

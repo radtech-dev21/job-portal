@@ -4,11 +4,22 @@ use Auth;
 use App\Models\User;
 use App\Models\Hirer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 class HirerController extends Controller
 {
     public function index(){
-        
-        return view('hirer-signup');
+        $employeeID = auth()->id();
+        $hirerDetails = DB::table('connection_requests')
+            ->where('connection_requests.employee_id', '=', $employeeID)
+            ->where('connection_requests.status', '=', 0)
+            ->join('users', 'connection_requests.hirer_id', '=', 'users.id')
+            ->select('users.*')
+            ->get();
+
+        if($hirerDetails->isEmpty()){
+            $hirerDetails = array();        
+        }
+        return view('hirer-signup',array('hirerDetails'=>$hirerDetails));
     }
 
     /*function to save Hirer data*/
