@@ -134,6 +134,7 @@
     </div>
 </div>
 
+<script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/popper.js') }}"></script>
 <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
 <script src="{{ asset('js/custom/auth.js') }}"></script>
