@@ -11,13 +11,19 @@ class ConnectionController extends Controller
         if($request->ajax()){
 			$employeeID = $request->emp_id;
 			$hirerID = auth()->user()->id;
-			$connReq = new ConnectionRequest;
-			$connReq->employee_id = $employeeID;
-			$connReq->hirer_id 	= $hirerID;
-			$connReq->save();
-			$status = 0;
-			if($connReq->id){
-				//$status = 1;
+			$connectionDataExist = ConnectionRequest::select('*')->where('hirer_id','=',$hirerID)->where('employee_id','=',$employeeID)->get();
+			$status = 2;
+			if($connectionDataExist->isEmpty())
+			{
+				$connReq = new ConnectionRequest;
+				$connReq->employee_id = $employeeID;
+				$connReq->hirer_id 	= $hirerID;
+				$connReq->save();
+				if($connReq->id){
+					$status = 1;
+				}else{
+					$status = 0;
+				}
 			}
 			return response()->json([
 				'status' => $status,

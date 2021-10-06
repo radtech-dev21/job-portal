@@ -6,10 +6,13 @@ function sendConnectionRequest(empID, btn){
 			data: {emp_id : empID},
 			dataType: "json",
 			success: function(resultData) { 
-				if(resultData.status){
-					$(btn).siblings('div').addClass('alert alert-success').html('Connection Request Sent').delay(5000).fadeOut(800);
-					$(btn).hide();
-				}else{
+				if(resultData.status == 1){
+					$(btn).html('Connection Request Sent').attr('disabled','disabled');
+				}
+				else if(resultData.status == 2){
+					$(btn).html('Connection Request Already Sent').attr('disabled','disabled');
+				}
+				else{
 					$(btn).siblings('div').addClass('alert alert-danger').html('Connection Request Failed').delay(5000).fadeOut(800);
 				}
 			}
