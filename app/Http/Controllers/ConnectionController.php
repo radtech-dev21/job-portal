@@ -17,7 +17,7 @@ class ConnectionController extends Controller
 			$connReq->save();
 			$status = 0;
 			if($connReq->id){
-				$status = 1;
+				//$status = 1;
 			}
 			return response()->json([
 				'status' => $status,

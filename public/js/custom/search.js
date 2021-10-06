@@ -7,10 +7,10 @@ function sendConnectionRequest(empID, btn){
 			dataType: "json",
 			success: function(resultData) { 
 				if(resultData.status){
-					$(btn).closest('.connection_success').addClass('alert alert-success').html('Connection Request sent successfully').delay(5000).fadeOut(800);
+					$(btn).siblings('div').addClass('alert alert-success').html('Connection Request Sent').delay(5000).fadeOut(800);
 					$(btn).hide();
 				}else{
-					$(btn).siblings('.connection_success').addClass('alert alert-danger').html('Connection Request failed').delay(5000).fadeOut(800);
+					$(btn).siblings('div').addClass('alert alert-danger').html('Connection Request Failed').delay(5000).fadeOut(800);
 				}
 			}
 		});

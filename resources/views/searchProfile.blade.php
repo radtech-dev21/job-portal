@@ -85,8 +85,8 @@
                             Person <%= key+1 %>
                                 <span class="d-block small opacity-50"><%= result.skill_text %></span>
                                 <span class="d-block small opacity-50"><%= result.experience %> 
+                                    <div class=""></div>
                                     <button type="button" class="btn btn-primary connect-btn" onclick="sendConnectionRequest(<%= result.id %>, this);">Connect</button>
-                                    <div class="connection_success"></div>
                                 </span>
                             </label>
 
