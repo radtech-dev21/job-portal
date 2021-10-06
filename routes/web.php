@@ -37,4 +37,5 @@ Route::group(['prefix' => 'hirer',  'middleware' => 'auth'], function(){
 	Route::post('save',[HirerController::class,'saveHirer']);
 	Route::get('dashboard',[HirerController::class,'index'])->name('hirer-dashboard')->middleware('auth');
 });
+Route::get('sendConnectionRequest', [App\Http\Controllers\ConnectionController::class, 'sendConnectionRequest'])->name('sendConnectionRequest');
 
