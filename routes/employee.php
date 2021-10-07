@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\EmployeeController;
-
-Route::post('save_employee', [EmployeeController::class, 'saveEmployee']);
-Route::get('employee', [EmployeeController::class, 'employeeDashboard'])->name('employee-dashboard')->middleware('auth');
-Route::get('employee-add', [EmployeeController::class, 'index'])->name('addEmployee')->middleware('auth');
+Route::group(['prefix' => 'employee',  'middleware' => 'auth'], function(){
+	Route::post('save',[EmployeeController::class,'saveEmployee'])->name('save-employee');
+	Route::get('dashboard',[EmployeeController::class,'employeeDashboard'])->name('employee-dashboard');
+	Route::get('add', [EmployeeController::class, 'index'])->name('add-employee');
+});

@@ -12,7 +12,7 @@
         <div class="col-md-9 register-right">
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <form action="save_employee" method="POST">
+                     <form action="{{ route('save-employee') }}" method="POST">
                         <input type="hidden" name="user_id" value="{{  !empty($employeeDetails['id']) ? $employeeDetails['id'] : 0 }}">
                         @csrf
                         <h3  class="register-heading">Looking</h3>
@@ -134,13 +134,7 @@
     </div>
 </div>
 
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/popper.js') }}"></script>
-<script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
-<script src="{{ asset('js/custom/auth.js') }}"></script>
-<script>
-    $(function () {
-        $('.selectpicker').selectpicker();
-    });
-</script>
+<script type="application/javascript" src="{{ asset('js/popper.js') }}"></script>
+<script type="application/javascript" src="{{ asset('js/bootstrap-select.min.js') }}"></script>
+<script type="application/javascript" src="{{ asset('js/custom/auth.js') }}"></script>
 @endsection

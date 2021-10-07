@@ -18,7 +18,7 @@ $(document).ready( function(){
 			}
 		});
 	});
-
+	
 	$('.request-tabs').on('click', function(){
 		var _this = $(this);
 		var requestTab = _this.attr('id').split('-');

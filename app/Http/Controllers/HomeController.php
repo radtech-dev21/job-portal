@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Models\{EmployeeSkills,Employee};
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     /**
@@ -29,7 +29,13 @@ class HomeController extends Controller
             }else if ($user->phone_is_verified == 0){
                 return view('auth.verify');
             }else{
-                return redirect()->route('employee-dashboard');
+                $employeeID = $user->id;
+                $userData = Employee::select('*')->where('id','=',$employeeID)->get();
+                if($userData->isEmpty()){
+                    return redirect()->route('add-employee');
+                }else{
+                    return redirect()->route('employee-dashboard');
+                }
             }
         }elseif ($user->role == 'hirer') {
             if($user->email_is_verified == 0){
@@ -41,6 +47,7 @@ class HomeController extends Controller
             }
         }
     }
+
 
     public function searchProfile()
     {

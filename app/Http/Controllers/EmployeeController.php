@@ -27,7 +27,7 @@ class EmployeeController extends Controller
             if (!empty($employeeDetails[0])) {
                 $data = (array)$employeeDetails[0];
             } 
-            return view('employee-signup', ['employeeDetails' => $data]);
+            return view('employee/add', ['employeeDetails' => $data]);
         }
         abort(404);
     }
@@ -36,13 +36,16 @@ class EmployeeController extends Controller
     public function employeeDashboard()
     {
         $employeeID = auth()->id();
-        $employeeDetails = DB::table('connection_requests')
-            ->where('connection_requests.employee_id', '=', $employeeID)
-            ->join('users', 'connection_requests.hirer_id', '=', 'users.id')
-            ->select('users.*')
-            ->get();
-        $data = array();
-       return view('employeeDashboard');
+        $hirerDetails = DB::table('connection_requests')
+        ->where('connection_requests.employee_id', '=', $employeeID)
+        ->where('connection_requests.status', '=', 0)
+        ->join('users', 'connection_requests.hirer_id', '=', 'users.id')
+        ->select('users.*')
+        ->get();
+        if($hirerDetails->isEmpty()){
+            $hirerDetails = array();        
+        }
+        return view('employee/dashboard',array('hirerDetails'=>$hirerDetails));
     }
 
     /*to save employee details*/
