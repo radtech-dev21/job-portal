@@ -27,7 +27,7 @@ class EmployeeController extends Controller
             if (!empty($employeeDetails[0])) {
                 $data = (array)$employeeDetails[0];
             } 
-            return view('employee/add', ['employeeDetails' => $data]);
+            return view('employee/create', ['employeeDetails' => $data]);
         }
         abort(404);
     }

@@ -32,7 +32,7 @@ class HomeController extends Controller
                 $employeeID = $user->id;
                 $userData = Employee::select('*')->where('id','=',$employeeID)->get();
                 if($userData->isEmpty()){
-                    return redirect()->route('add-employee');
+                    return redirect()->route('create-employee');
                 }else{
                     return redirect()->route('employee-dashboard');
                 }

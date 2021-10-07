@@ -41,7 +41,7 @@
                             @if(Auth::user()->role != 'hirer')
                             @if(empty($employeeDetails))
                             <li class="nav-item">
-                                <a class="nav-link {{$disabled_class}}" href="{{ route('add-employee') }}">{{ __('Apply as an Employee') }}</a>
+                                <a class="nav-link {{$disabled_class}}" href="{{ route('create-employee') }}">{{ __('Apply as an Employee') }}</a>
                             </li>
                             @endif
                             @endif
