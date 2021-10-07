@@ -1,4 +1,5 @@
 <script src="{{ asset('js/jquery-3.3.1.slim.min.js') }}"></script>
+<script src="{{ asset('js/underscore.js') }}"></script>
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" id="bootstrap-css">
 <link href="{{ asset('css/bootstrap-select.min.css') }}" rel="stylesheet" id="bootstrap-css">
@@ -82,11 +83,19 @@
                     <% if(results.length !== 0) { %>
                         <% _.each(results, function(result, key){%>
                             <label class="list-group-item py-3 mt-3" for="listGroupCheckableRadios1">
-                            Person <%= key+1 %>
+                           <% if(result.request_status === 1) { %>     
+                           <%= result.name %>
+                           <% } else { %>
+                            Persons <%= key+1 %>
+                            <% } %>
                                 <span class="d-block small opacity-50"><%= result.skill_text %></span>
                                 <span class="d-block small opacity-50"><%= result.experience %> 
                                     <div class=""></div>
+                                    <% if( result.request_status === 3 ) { %>
                                     <button type="button" class="btn btn-primary connect-btn" onclick="sendConnectionRequest(<%= result.id %>, this);">Connect</button>
+                                    <% } else if(result.request_status == 0){ %>
+                                    <button type="button" class="btn btn-info" disabled="disabled">Request Pending</button>
+                                     <% } %>
                                 </span>
                             </label>
 
