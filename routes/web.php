@@ -32,7 +32,7 @@ Route::get('resend-phone-otp', [App\Http\Controllers\Auth\VerificationController
 
 
 /*connection routes*/
-Route::get('sendConnectionRequest', [App\Http\Controllers\ConnectionController::class, 'sendConnectionRequest'])->name('sendConnectionRequest');
+Route::get('/sendConnectionRequest', [App\Http\Controllers\ConnectionController::class, 'sendConnectionRequest'])->name('sendConnectionRequest');
 Route::get('/acceptRejectRequest', [App\Http\Controllers\ConnectionController::class, 'acceptRejectRequest'])->name('acceptRejectRequest');
 Route::get('/getRequestTabData', [App\Http\Controllers\ConnectionController::class, 'getRequestTabData'])->name('getRequestTabData');
 

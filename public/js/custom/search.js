@@ -2,7 +2,7 @@ function sendConnectionRequest(empID, btn){
 	if(empID != ''){
 		$.ajax({
 			type: 'GET',
-			url: "sendConnectionRequest",
+			url: "/sendConnectionRequest",
 			data: {emp_id : empID},
 			dataType: "json",
 			success: function(resultData) { 

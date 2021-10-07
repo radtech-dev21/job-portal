@@ -8,18 +8,7 @@ use Illuminate\Support\Facades\DB;
 class HirerController extends Controller
 {
     public function index(){
-        // $employeeID = auth()->id();
-        // $hirerDetails = DB::table('connection_requests')
-        //     ->where('connection_requests.employee_id', '=', $employeeID)
-        //     ->where('connection_requests.status', '=', 0)
-        //     ->join('users', 'connection_requests.hirer_id', '=', 'users.id')
-        //     ->select('users.*')
-        //     ->get();
-
-        // if($hirerDetails->isEmpty()){
-        //     $hirerDetails = array();        
-        // }
-        // return view('hirer-signup',array('hirerDetails'=>$hirerDetails));
+        return view('hirer/dashboard');
     }
 
     /*function to save Hirer data*/
