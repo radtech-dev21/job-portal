@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 
 use Illuminate\Http\Request;
-use App\Models\Employee;
+use App\Models\{Employee,User};
 use App\Models\EmployeeSkills;
 use Illuminate\Support\Facades\DB;
 
@@ -104,6 +104,7 @@ class EmployeeController extends Controller
 
     public function chatView()
     {
-        return view('chat.employeeChatInbox');
+        $users_list = User::whereIn('role', ['Hirer', 'Employee'])->whereNotIn('id', [Auth::id()])->get();
+        return view('chat.employeeChatInbox', compact('users_list'));
     }
 }

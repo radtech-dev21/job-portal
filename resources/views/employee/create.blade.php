@@ -1,8 +1,7 @@
-<link href="{{ asset('css/bootstrap-select.min.css') }}" rel="stylesheet" id="bootstrap-css">
-<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-<!------ Include the above in your HEAD tag ---------->
 @extends('layouts.app')
 @section('content')
+<link href="{{ asset('css/bootstrap-select.min.css') }}" rel="stylesheet" id="bootstrap-css">
+<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 <div class="container register">
     <div class="row">
         <div class="col-md-3 register-left">
@@ -133,8 +132,4 @@
         </div>
     </div>
 </div>
-
-<script type="application/javascript" src="{{ asset('js/popper.js') }}"></script>
-<script type="application/javascript" src="{{ asset('js/bootstrap-select.min.js') }}"></script>
-<script type="application/javascript" src="{{ asset('js/custom/auth.js') }}"></script>
 @endsection
