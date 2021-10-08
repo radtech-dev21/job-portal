@@ -19,7 +19,7 @@ class HirerController extends Controller
                 $data = (array)$companyDetails[0];
             } 
             return view('hirer/create', ['companyDetails' => $data]);
-
+        }
     }
 
     /*to show hirer dashboard*/
