@@ -6,4 +6,5 @@ Route::group(['prefix' => 'hirer', Auth::check() => 'role:hirer'], function () {
 Route::group(['prefix' => 'hirer',  'middleware' => 'auth'], function(){
 	Route::post('save',[HirerController::class,'saveHirer']);
 	Route::get('dashboard',[HirerController::class,'index'])->name('hirer-dashboard');
+	Route::get('create-company', [HirerController::class, 'createCompany'])->name('create-company');
 });

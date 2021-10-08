@@ -12,6 +12,12 @@ class HirerController extends Controller
         return view('hirer/dashboard');
     }
 
+    /*to create company*/
+    public function createCompany()
+    {
+        return view('hirer/create');
+    }
+
     /*function to save Hirer data*/
     public function saveHirer(Request $request){
         try {

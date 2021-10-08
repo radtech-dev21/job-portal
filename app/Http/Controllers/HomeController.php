@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Auth;
-use App\Models\{EmployeeSkills,Employee,ConnectionRequest};
+use App\Models\{EmployeeSkills,Employee,Hirer,ConnectionRequest};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
@@ -23,14 +23,15 @@ class HomeController extends Controller
      */
     public function index(){
         $user = Auth::user();
+        $userID = $user->id;
         if($user->role == 'employee'){
             if($user->email_is_verified == 0){
                 return view('auth.verify');
             }else if ($user->phone_is_verified == 0){
                 return view('auth.verify');
             }else{
-                $employeeID = $user->id;
-                $userData = Employee::select('*')->where('id','=',$employeeID)->get();
+                
+                $userData = Employee::select('*')->where('id','=',$userID)->get();
                 if($userData->isEmpty()){
                     return redirect()->route('create-employee');
                 }else{
@@ -43,7 +44,12 @@ class HomeController extends Controller
             }else if ($user->phone_is_verified == 0){
                 return view('auth.verify');
             }else{
-                return redirect()->route('hirer-dashboard');
+                $userData = Hirer::select('*')->where('id','=',$userID)->get();
+                if($userData->isEmpty()){
+                    return redirect()->route('create-company');
+                }else{
+                    return redirect()->route('hirer-dashboard');
+                }
             }
         }
     }
