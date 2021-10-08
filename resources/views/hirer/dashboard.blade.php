@@ -72,8 +72,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btnRegister" id="search_btn">Search</button>
-                            <button type="button" class="btnRegister" id="search_btn">Clear Search</button>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="button" class="btnRegister" id="search_btn">Search</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="button" class="btnRegister" id="search_btn">Clear Search</button>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
