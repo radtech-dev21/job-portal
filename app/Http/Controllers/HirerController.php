@@ -5,11 +5,11 @@ use App\Models\User;
 use App\Models\Hirer;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 class HirerController extends Controller
 {
     public function index(){
-        
-        return view('hirer-signup');
+        return view('hirer/dashboard');
     }
 
     /*function to save Hirer data*/

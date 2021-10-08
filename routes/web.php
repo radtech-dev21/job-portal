@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HirerController;
-use App\Http\Controllers\EmployeeController;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -32,35 +30,8 @@ Route::get('resend-email-otp', [App\Http\Controllers\Auth\VerificationController
 Route::get('resend-phone-otp', [App\Http\Controllers\Auth\VerificationController::class, 'resendPhoneOtp'])->name('phoneOtp');
 
 
-
-
-Route::get('hirer',[HirerController::class,'index'])->name('hirer')->middleware('auth');
-Route::post('hirer/save',[HirerController::class,'saveHirer']);
-
-Route::get('hirer', [HirerController::class, 'index'])->name('hirer')->middleware('auth');
-Route::post('hirer/save', [HirerController::class, 'saveHirer']);
-
-/* Employee Api */
-Route::get('employee', [EmployeeController::class, 'employeeDashboard'])->name('employee')->middleware('auth');
-Route::get('employee-add', [EmployeeController::class, 'index'])->name('employeeAdd')->middleware('auth');
-Route::post('save_employee', [EmployeeController::class, 'saveEmployee']);
-
-
-//Admin Routes
-Route::get('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'index']);
-Route::get('/admin/dashboard', [App\Http\Controllers\Admin\HomeController::class, 'index']);
-Route::post('/admin/verify_user', [App\Http\Controllers\Admin\Auth\LoginController::class, 'verifyUser']);
-Route::get('/admin/logout', [App\Http\Controllers\Admin\Auth\LoginController::class, 'logout']);
-Route::get('/admin/hirer', [App\Http\Controllers\Admin\HirerController::class, 'index']);
-Route::get('/admin/employee', [App\Http\Controllers\Admin\EmployeeController::class, 'index']);
-
-Route::group(['prefix' => 'employee',  'middleware' => 'auth'], function(){
-	Route::get('chat', [EmployeeController::class, 'chatView'])->name('employee-chat');
-});
-
-Route::group(['prefix' => 'hirer',  'middleware' => 'auth'], function(){
-	Route::post('save',[HirerController::class,'saveHirer']);
-	Route::get('dashboard',[HirerController::class,'index'])->name('hirer-dashboard')->middleware('auth');
-	Route::get('chat', [HirerController::class, 'chatView'])->name('hirer-chat');
-});
+/*connection routes*/
+Route::get('/sendConnectionRequest', [App\Http\Controllers\ConnectionController::class, 'sendConnectionRequest'])->name('sendConnectionRequest');
+Route::get('/acceptRejectRequest', [App\Http\Controllers\ConnectionController::class, 'acceptRejectRequest'])->name('acceptRejectRequest');
+Route::get('/getRequestTabData', [App\Http\Controllers\ConnectionController::class, 'getRequestTabData'])->name('getRequestTabData');
 

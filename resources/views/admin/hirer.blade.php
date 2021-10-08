@@ -11,7 +11,7 @@
 				<table class="table align-items-center" id="data-table">
 					<thead class="thead-light">
 						<tr>
-							<th>Number</th>
+							<th>S.No.</th>
 							<th>Name</th>
 							<th>Email</th>
 							<th>Phone No.</th>

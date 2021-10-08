@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 use Auth;
-use App\Models\{EmployeeSkills,Employee};
+use App\Models\{EmployeeSkills,Employee,ConnectionRequest};
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     /**
@@ -29,7 +29,13 @@ class HomeController extends Controller
             }else if ($user->phone_is_verified == 0){
                 return view('auth.verify');
             }else{
-                return redirect()->route('employee-dashboard');
+                $employeeID = $user->id;
+                $userData = Employee::select('*')->where('id','=',$employeeID)->get();
+                if($userData->isEmpty()){
+                    return redirect()->route('create-employee');
+                }else{
+                    return redirect()->route('employee-dashboard');
+                }
             }
         }elseif ($user->role == 'hirer') {
             if($user->email_is_verified == 0){
@@ -42,6 +48,7 @@ class HomeController extends Controller
         }
     }
 
+
     public function searchProfile()
     {
         return view('searchProfile');
@@ -49,6 +56,7 @@ class HomeController extends Controller
 
     public function search(Request $request){
         if($request->ajax()){
+            $hirerID = auth()->id();
             $employee_skils_query = EmployeeSkills::query();
             if(request('skills')){
                 $employee_skils_query->whereIn('skills',request('skills'));
@@ -61,6 +69,13 @@ class HomeController extends Controller
                     $skills_array[] = $skill->skills;
                 }
                 $result->skill_text = implode(', ', $skills_array);
+                /*code for getting the connection info*/
+                $connectionDataExist = ConnectionRequest::select('*')->where('hirer_id','=',$hirerID)->where('employee_id','=',$result->id)->get();
+                $status = 3;//no request
+                if(!$connectionDataExist->isEmpty()){
+                    $status = $connectionDataExist[0]->status;
+                }
+                $result->request_status = $status;
             }
             return response()->json(['results' => $results], 201);
         }

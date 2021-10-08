@@ -12,11 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
-
-    public function employeeDashboard()
-    {
-       return view('employeeDashboard');
-    }
+    /*to load employee signup view*/
     public function index()
     {
         $id = auth()->id();
@@ -28,18 +24,32 @@ class EmployeeController extends Controller
             ->selectRaw('GROUP_CONCAT(employee_skills.skills) as skills')
             ->get();
         $data = array();
-        if (!empty($employeeDetails[0])) {
-            $data = (array)$employeeDetails[0];
-            return view('employee-signup', ['employeeDetails' => $data]);
-        } else {
-            return view('employee-signup', ['employeeDetails' => $data]);
-        }
         if (Auth::user()->role == 'employee') {
-            return view('employee-signup', ['employeeDetails' => $data]);
+            if (!empty($employeeDetails[0])) {
+                $data = (array)$employeeDetails[0];
+            } 
+            return view('employee/create', ['employeeDetails' => $data]);
         }
         abort(404);
     }
 
+    /*to show employee dashboard*/
+    public function employeeDashboard()
+    {
+        $employeeID = auth()->id();
+        $hirerDetails = DB::table('connection_requests')
+        ->where('connection_requests.employee_id', '=', $employeeID)
+        ->where('connection_requests.status', '=', 0)
+        ->join('users', 'connection_requests.hirer_id', '=', 'users.id')
+        ->select('users.*')
+        ->get();
+        if($hirerDetails->isEmpty()){
+            $hirerDetails = array();        
+        }
+        return view('employee/dashboard',array('hirerDetails'=>$hirerDetails));
+    }
+
+    /*to save employee details*/
     public function saveEmployee(Request $request)
     {
         $userId = $request->input('user_id');
@@ -95,8 +105,7 @@ class EmployeeController extends Controller
 
     public function chatView()
     {
-        $hirer = User::where('role', '=', 'hirer')->get();
-
-        return view('chat.employeeChatInbox',['hirer_data'=>$hirer->toArray()]);
+        $users_list = User::whereIn('role', ['Hirer', 'Employee'])->whereNotIn('id', [Auth::id()])->get();
+        return view('chat.employeeChatInbox', compact('users_list'));
     }
 }

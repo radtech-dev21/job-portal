@@ -1,8 +1,7 @@
-<link href="{{ asset('css/bootstrap-select.min.css') }}" rel="stylesheet" id="bootstrap-css">
-<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-<!------ Include the above in your HEAD tag ---------->
 @extends('layouts.app')
 @section('content')
+<link href="{{ asset('css/bootstrap-select.min.css') }}" rel="stylesheet" id="bootstrap-css">
+<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 <div class="container register">
     <div class="row">
         <div class="col-md-3 register-left">
@@ -12,7 +11,7 @@
         <div class="col-md-9 register-right">
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <form action="save_employee" method="POST">
+                     <form action="{{ route('save-employee') }}" method="POST">
                         <input type="hidden" name="user_id" value="{{  !empty($employeeDetails['id']) ? $employeeDetails['id'] : 0 }}">
                         @csrf
                         <h3  class="register-heading">Looking</h3>
@@ -133,13 +132,4 @@
         </div>
     </div>
 </div>
-
-<script src="{{ asset('js/popper.js') }}"></script>
-<script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
-<script src="{{ asset('js/custom/auth.js') }}"></script>
-<script>
-    $(function () {
-        $('.selectpicker').selectpicker();
-    });
-</script>
 @endsection

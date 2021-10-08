@@ -185,3 +185,22 @@ body {
     animation: mover 1s infinite  alternate;
     margin-left : 100px;
 }
+
+
+ul.list-group {
+    border: ridge;
+}
+
+.list-group-item img{
+    max-width: 20px;
+}
+
+.connect-btn{
+    margin-left: -230px;
+    z-index: 999;
+    margin-top: 42px !important;
+}
+
+.emp-name{
+    color: #00d7d7;
+}

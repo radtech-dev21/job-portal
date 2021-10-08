@@ -18,4 +18,6 @@ $( document ).ready(function() {
             $('#experience').val(x.toFixed(1));
         }
     });
+
+    $('.selectpicker').selectpicker();
  });

@@ -4,8 +4,8 @@
 <link href="{{ asset('css/bootstrap-select.min.css') }}" rel="stylesheet" id="bootstrap-css">
 <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<!-- <script src="{{ asset('js/custom/custom.js') }}"></script> -->
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+<script type="text/javascript" src="{{ asset('js/custom/search.js') }}"></script>
 @extends('layouts.app')
 @section('content')
 @auth
@@ -84,8 +84,12 @@
                             <label class="list-group-item py-3 mt-3" for="listGroupCheckableRadios1">
                             Person <%= key+1 %>
                                 <span class="d-block small opacity-50"><%= result.skill_text %></span>
-                                <span class="d-block small opacity-50"><%= result.experience %></span>
+                                <span class="d-block small opacity-50"><%= result.experience %> 
+                                    <div class=""></div>
+                                    <button type="button" class="btn btn-primary connect-btn" onclick="sendConnectionRequest(<%= result.id %>, this);">Connect</button>
+                                </span>
                             </label>
+
                             <div style="display: inline;border-right: 1px solid gray; padding:0 5px;"></div>
 
                         <% }); %>
@@ -126,6 +130,7 @@
     </div>
 </div>
 @endif
+
 <script type="text/javascript">
 $(document).ready(function() {
     getsearchData();
@@ -147,4 +152,5 @@ $(document).ready(function() {
     });
 });
 </script>
+
 @endsection
