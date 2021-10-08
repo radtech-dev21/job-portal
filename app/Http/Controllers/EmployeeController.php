@@ -96,11 +96,7 @@ class EmployeeController extends Controller
             $EmployeeSkills->employee_id = $employee->id;
             $EmployeeSkills->save();
         }
-        if (!$userId) {
-            return back()->with('success', 'Employee Created Successfully');
-        } else {
-            return redirect()->back()->with('success', 'Employee Updated Successfully');
-        }
+        return redirect()->route('employee-dashboard');
     }
 
     public function chatView()

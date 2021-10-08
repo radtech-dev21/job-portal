@@ -83,11 +83,7 @@ class HirerController extends Controller
         } else {
             $company->save();
         }
-        if (!$companyID) {
-            return back()->with('success', 'Company Created Successfully');
-        } else {
-            return redirect()->back()->with('success', 'Company Updated Successfully');
-        }
+        return redirect()->route('hirer-dashboard');
     }
 
     public function chatView()

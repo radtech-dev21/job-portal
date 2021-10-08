@@ -60,6 +60,19 @@
                                     @if(!empty($employeeDetails))
                                     <li><a class="dropdown-item" href="{{ route('employee-dashboard') }}">{{ __('Profile') }}</a></li>
                                     @endif
+
+                                    <li>
+                                        @if(Auth::user()->role == 'hirer')
+                                            <a class="dropdown-item" href="{{ route('create-company') }}">
+                                                {{ __('Profile') }}
+                                            </a>
+                                        @elseif(Auth::user()->role == 'employee')
+                                            <a class="dropdown-item" href="{{ route('create-employee') }}">
+                                                {{ __('Profile') }}
+                                            </a>
+                                        @endif
+                                    </li>
+
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
