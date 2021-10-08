@@ -38,6 +38,9 @@
                             }
                             @endphp
                             @if(Auth::user()->role != 'hirer')
+                            <li class="nav-item">
+                                <a class="nav-link {{$disabled_class}}" href="{{ route('employeeChat') }}">{{ __('Chat') }}</a>
+                            </li>
                             @if(empty($employeeDetails))
                             <li class="nav-item">
                                 <a class="nav-link {{$disabled_class}}" href="{{ route('create-employee') }}">{{ __('Apply as an Employee') }}</a>
@@ -46,7 +49,7 @@
                             @endif
                             @if(Auth::user()->role == 'hirer')
                             <li class="nav-item">
-                                <a class="nav-link {{$disabled_class}}" href="{{ route('hirer-chat') }}">{{ __('Chat') }}</a>
+                                <a class="nav-link {{$disabled_class}}" href="{{ route('chat') }}">{{ __('Chat') }}</a>
                             </li>
                             @endif
                             <li class="nav-item dropdown d-flex">
@@ -55,7 +58,7 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     @if(!empty($employeeDetails))
-                                    <li><a class="dropdown-item" href="{{ route('employee') }}">{{ __('Profile') }}</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('employee-dashboard') }}">{{ __('Profile') }}</a></li>
                                     @endif
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -78,6 +81,8 @@
         </div>
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/custom/auth.js') }}"></script>
+        <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
         <script type="text/javascript">
         var base_url = "{{url('/')}}";
         </script>
