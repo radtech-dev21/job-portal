@@ -6,14 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class HirerController extends Controller
 {
+    /*to load company create view*/
     public function index(){
-        return view('hirer/dashboard');
+        return view('hirer/create');
+
     }
 
-    /*to create company*/
-    public function createCompany()
-    {
-        return view('hirer/create');
+    /*to show hirer dashboard*/
+    public function hirerDashboard(){
+        return view('hirer/dashboard');
     }
 
     /*function to save Hirer data*/
@@ -49,7 +50,7 @@ class HirerController extends Controller
         $companyID = $request->input('company_id');
         $validatedData = $request->validate([
             'name'             => 'required',
-            'email'            => 'required|unique:company',
+            'email'            => 'required',
             'address'          => 'required',
             'contact_no'       => 'required',
             'no_of_employees'  => 'required|numeric',

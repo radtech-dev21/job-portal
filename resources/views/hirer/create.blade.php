@@ -44,13 +44,13 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Contact Number *" value="{{ !empty($companyDetails['contact_no']) ? $companyDetails['contact_no'] : old('contact_no') }}" name="contact_no" />
+                                    <input type="text" class="form-control" placeholder="Contact Number *" value="{{ !empty($companyDetails['contact_no']) ? $companyDetails['contact_no'] : old('contact_no') }}" name="contact_no" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');"/>
                                     @if ($errors->has('contact_no'))
                                     <span class="text-danger">{{ $errors->first('contact_no') }}</span>
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Number Of Employees *" value="{{ !empty($companyDetails['no_of_employees']) ? $companyDetails['no_of_employees'] : old('no_of_employees') }}" name="no_of_employees" />
+                                    <input type="text" class="form-control" placeholder="Number Of Employees *" value="{{ !empty($companyDetails['no_of_employees']) ? $companyDetails['no_of_employees'] : old('no_of_employees') }}" name="no_of_employees" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');"/>
                                     @if ($errors->has('no_of_employees'))
                                     <span class="text-danger">{{ $errors->first('no_of_employees') }}</span>
                                     @endif
@@ -84,7 +84,7 @@
                                     @endif
                                 </div>
                                 <a href="#" class="btn btn-primary btnRegister" tabindex="-1" role="button">{{ __('Back') }}</a>
-                                <input type="submit" class="btnRegister"  value="Apply"/>
+                                <input type="submit" class="btnRegister"  value="Create"/>
                             </div>
                         </div>
                     </form>
