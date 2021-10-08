@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Auth;
 
 use Illuminate\Http\Request;
-use App\Models\{Employee,User};
+use App\Models\User;
+use App\Models\Employee;
 use App\Models\EmployeeSkills;
 use Illuminate\Support\Facades\DB;
 

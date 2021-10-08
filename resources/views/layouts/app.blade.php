@@ -44,6 +44,11 @@
                             </li>
                             @endif
                             @endif
+                            @if(Auth::user()->role == 'hirer')
+                            <li class="nav-item">
+                                <a class="nav-link {{$disabled_class}}" href="{{ route('hirer-chat') }}">{{ __('Chat') }}</a>
+                            </li>
+                            @endif
                             <li class="nav-item dropdown d-flex">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     {{ Auth::user()->name }}
