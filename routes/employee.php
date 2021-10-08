@@ -1,5 +1,8 @@
 <?php
 use App\Http\Controllers\EmployeeController;
+Route::group(['prefix' => 'employee', Auth::check() => 'role:hirer'], function () {
+	Route::get('chat', [EmployeeController::class, 'chatView'])->name('employeeChat');
+});
 Route::group(['prefix' => 'employee',  'middleware' => 'auth'], function(){
 	Route::get('create', [EmployeeController::class, 'index'])->name('create-employee');
 	Route::get('chat', [EmployeeController::class, 'chatView']);

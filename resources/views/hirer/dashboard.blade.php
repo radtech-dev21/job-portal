@@ -1,4 +1,5 @@
 <script src="{{ asset('js/jquery-3.3.1.slim.min.js') }}"></script>
+<script src="{{ asset('js/underscore.js') }}"></script>
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" id="bootstrap-css">
 <link href="{{ asset('css/bootstrap-select.min.css') }}" rel="stylesheet" id="bootstrap-css">
@@ -71,33 +72,60 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btnRegister" id="search_btn">Search</button>
-                            <button type="button" class="btnRegister" id="search_btn">Clear Search</button>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="button" class="btnRegister" id="search_btn">Search</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="button" class="btnRegister" id="search_btn">Clear Search</button>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="list-group list-group-checkable mt-5" id="list_group_main_div"></div>
                 <script type="text/template" id="search_template">
-                    <% if(results.length !== 0) { %>
-                        <% _.each(results, function(result, key){%>
-                            <label class="list-group-item py-3 mt-3" for="listGroupCheckableRadios1">
-                            Person <%= key+1 %>
-                                <span class="d-block small opacity-50"><%= result.skill_text %></span>
-                                <span class="d-block small opacity-50"><%= result.experience %> 
+                    
+                        <% if(results.length !== 0) { %>
+                            <% _.each(results, function(result, key){%>
+                            <div class="row mt-4">
+                               <div class="col-8">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <img src="/img/iam_employer.png">
+                                            <% if(result.request_status === 1) { %>
+                                            <span><strong class="emp-name"><%= result.name %></span></strong>
+                                            <% } else { %>
+                                            Persons <%= key+1 %>
+                                            <% } %>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span><strong>Skills : </strong></span>
+                                            <%= result.skill_text %>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span><strong>Experience : </strong></span>
+                                            <%= result.experience+' yr(s)' %>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-4 connect-btn">
                                     <div class=""></div>
-                                    <button type="button" class="btn btn-primary connect-btn" onclick="sendConnectionRequest(<%= result.id %>, this);">Connect</button>
-                                </span>
-                            </label>
-
-                            <div style="display: inline;border-right: 1px solid gray; padding:0 5px;"></div>
-
-                        <% }); %>
-                    <% } else { %>
-                        <div class="alert alert-light" role="alert">
-                          No result found
-                        </div>
-                    <% } %>
+                                    <% if( result.request_status === 3 ) { %>
+                                    <button type="button" class="btn btn-primary" onclick="sendConnectionRequest(<%= result.id %>, this);">Connect</button>
+                                    <% } else if(result.request_status == 0){ %>
+                                    <button type="button" class="btn btn-info" disabled="disabled">Request Pending</button>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <% }); %>
+                        <% } else { %>
+                            <div class="row form-group alert alert-light" role="alert">
+                              No result found
+                            </div>
+                        <% } %>
+                    
                 </script>
             </div>
         </div>

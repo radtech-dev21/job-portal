@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Models\User;
 use App\Models\Hirer;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class HirerController extends Controller
@@ -41,6 +42,8 @@ class HirerController extends Controller
 
     public function chatView()
     {
-        return view('chat.hirerChatInbox');
+        $employee = User::where('role', '=', 'employee')->get();
+
+        return view('chat.hirerChatInbox',['employee_data'=>$employee->toArray()]);
     }
 }
