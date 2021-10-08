@@ -8,7 +8,17 @@ class HirerController extends Controller
 {
     /*to load company create view*/
     public function index(){
-        return view('hirer/create');
+        $id = auth()->id();
+        $companyDetails = DB::table('companies')
+            ->where('companies.hirer_id', '=', $id)
+            ->select('companies.*')
+            ->get();
+        $data = array();
+        if (Auth::user()->role == 'hirer') {
+            if (!empty($companyDetails[0])) {
+                $data = (array)$companyDetails[0];
+            } 
+            return view('hirer/create', ['companyDetails' => $data]);
 
     }
 
