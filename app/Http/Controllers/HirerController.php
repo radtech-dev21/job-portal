@@ -1,9 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use Auth;
-use App\Models\User;
-use App\Models\Hirer;
-use App\Models\Employee;
+use App\Models\{User,Hirer,Employee,Company};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class HirerController extends Controller
@@ -45,6 +43,41 @@ class HirerController extends Controller
         }
     }
 
+    /*to save company details*/
+    public function saveCompany(Request $request)
+    {
+        $companyID = $request->input('company_id');
+        $validatedData = $request->validate([
+            'name'             => 'required',
+            'email'            => 'required|unique:company',
+            'address'          => 'required',
+            'contact_no'       => 'required',
+            'no_of_employees'  => 'required|numeric',
+            'locations'        => 'required|array'
+        ]);
+        if ($companyID) {
+            $company = Company::find($companyID);
+        } else {
+            $company = new Company;
+        }
+        $company->name             = $validatedData['name'];
+        $company->email            = $validatedData['email'];
+        $company->address          = $validatedData['address'];
+        $company->contact_no       = $validatedData['contact_no'];
+        $company->no_of_employees  = $validatedData['no_of_employees'];
+        $company->hirer_id         = auth()->id();
+        $company->locations        = json_encode($validatedData['locations']);
+        if ($companyID) {
+            $company->update();
+        } else {
+            $company->save();
+        }
+        if (!$companyID) {
+            return back()->with('success', 'Company Created Successfully');
+        } else {
+            return redirect()->back()->with('success', 'Company Updated Successfully');
+        }
+    }
 
     public function chatView()
     {

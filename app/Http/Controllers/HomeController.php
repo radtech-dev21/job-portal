@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Auth;
-use App\Models\{EmployeeSkills,Employee,Hirer,ConnectionRequest};
+use App\Models\{EmployeeSkills,Employee,Hirer,ConnectionRequest,Company};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
@@ -44,7 +44,7 @@ class HomeController extends Controller
             }else if ($user->phone_is_verified == 0){
                 return view('auth.verify');
             }else{
-                $userData = Hirer::select('*')->where('id','=',$userID)->get();
+                $userData = Company::select('*')->where('hirer_id','=',$userID)->get();
                 if($userData->isEmpty()){
                     return redirect()->route('create-company');
                 }else{
