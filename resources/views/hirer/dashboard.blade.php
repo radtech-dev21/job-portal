@@ -112,7 +112,7 @@
                                 </div>
                                 <div class="col-4 connect-btn">
                                     <div class=""></div>
-                                    <% if( result.request_status === 3 ) { %>
+                                    <% if( result.request_status === 4 || result.request_status === 2) { %>
                                     <button type="button" class="btn btn-primary" onclick="sendConnectionRequest(<%= result.id %>, this);">Connect</button>
                                     <% } else if(result.request_status == 0){ %>
                                     <button type="button" class="btn btn-info" disabled="disabled">Request Pending</button>

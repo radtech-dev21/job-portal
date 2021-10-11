@@ -30,8 +30,7 @@ class HomeController extends Controller
             }else if ($user->phone_is_verified == 0){
                 return view('auth.verify');
             }else{
-                
-                $userData = Employee::select('*')->where('id','=',$userID)->get();
+                $userData = Employee::select('*')->where('user_id','=',$userID)->get();
                 if($userData->isEmpty()){
                     return redirect()->route('create-employee');
                 }else{
@@ -77,7 +76,7 @@ class HomeController extends Controller
                 $result->skill_text = implode(', ', $skills_array);
                 /*code for getting the connection info*/
                 $connectionDataExist = ConnectionRequest::select('*')->where('hirer_id','=',$hirerID)->where('employee_id','=',$result->id)->get();
-                $status = 3;//no request
+                $status = 4;//no request, to show connect button
                 if(!$connectionDataExist->isEmpty()){
                     $status = $connectionDataExist[0]->status;
                 }

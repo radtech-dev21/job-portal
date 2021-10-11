@@ -13897,3 +13897,7 @@ textarea.form-control-lg {
   overflow: visible;
   clip: auto;
 }
+
+div#connection-tabs img {
+    width: 39px;
+}

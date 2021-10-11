@@ -35,12 +35,16 @@ class ConnectionController extends Controller
     public function acceptRejectRequest(Request $request){
         if($request->ajax()){
         	$hirerID 		= $request->hirer_id;
-        	$employeeID 	= auth()->user()->id;
+        	$employeeID 	= getMyID(auth()->user()->id,'employee');
         	$requestType 	= $request->request_type;
         	$status = 2;//declined
         	if($requestType == 'accept'){
         		$status = 1;
-        	}
+        	}else if($requestType == 'block'){
+                $status = 3;
+            }else if($requestType == 'unblock'){
+                $status = 1;
+            }
         	ConnectionRequest::where('employee_id', $employeeID)->where('hirer_id', $hirerID)->update(['status' => $status]);
         	return response()->json([
 				'status' => $status,
@@ -57,8 +61,9 @@ class ConnectionController extends Controller
     			$status = 1;//accepted requests
     		elseif($requestType == 'reject')
     			$status = 2;//rejected requests
-
-    		$employeeID = auth()->id();
+            elseif($requestType == 'block')
+                $status = 3;//blocked requests
+    		$employeeID = getMyID(auth()->id(),'employee');
         	$hirerDetails = DB::table('connection_requests')
             ->where('connection_requests.employee_id', '=', $employeeID)
             ->where('connection_requests.status', '=', $status)

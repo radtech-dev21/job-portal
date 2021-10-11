@@ -12,7 +12,7 @@ $(document).ready( function(){
 			success: function(resultData) { 
 				if(resultData.status === 1){
 					_this.parent('.conn-btn').html('You are now connection with <strong>'+hirerName+'</strong>');
-				}else if(resultData.status === 2){
+				}else if(resultData.status === 2 || resultData.status === 3){
 					_this.closest('.card').hide();
 				}
 			}
@@ -40,6 +40,10 @@ $(document).ready( function(){
 						html+='<div class="card"><div class="card-body"><div class="row"><div class="col-sm"><img src="'+basePath+'/img/user.png">'+resultData.hirerDetails[i].name+'</div>';
 						if(requestType == 'pending'){
 							html+='<div class="col-sm conn-btn" data-hirer_id="'+resultData.hirerDetails[i].id+'" data-hirer_name="'+resultData.hirerDetails[i].name+'"><button type="button" class="btn btn-primary connection-request" data-request="accept">Accept</button><button type="button" class="btn btn-danger connection-request" data-request="reject">Reject</button></div>';
+						}else if(requestType == 'accept'){
+							html+='<div class="col-sm conn-btn" data-hirer_id="'+resultData.hirerDetails[i].id+'" data-hirer_name="'+resultData.hirerDetails[i].name+'"><button type="button" class="btn btn-danger connection-request" data-request="block">Block</button></div>';
+						}else if(requestType == 'block'){
+							html+='<div class="col-sm conn-btn" data-hirer_id="'+resultData.hirerDetails[i].id+'" data-hirer_name="'+resultData.hirerDetails[i].name+'"><button type="button" class="btn btn-info connection-request" data-request="unblock">Unblock</button></div>';
 						}
 						html+='</div></div></div>';
 						$(divID).html(html);

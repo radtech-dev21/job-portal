@@ -36,7 +36,7 @@ class EmployeeController extends Controller
     /*to show employee dashboard*/
     public function employeeDashboard()
     {
-        $employeeID = auth()->id();
+        $employeeID = getMyID(auth()->id(),'employee');
         $hirerDetails = DB::table('connection_requests')
         ->where('connection_requests.employee_id', '=', $employeeID)
         ->where('connection_requests.status', '=', 0)
