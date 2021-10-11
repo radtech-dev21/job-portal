@@ -95,8 +95,12 @@
                                         <li class="list-group-item">
                                             <img src="/img/iam_employer.png">
                                             <% if(result.request_status === 1) { %>
-                                            <span><strong class="emp-name"><%= result.name %></span></strong>
-                                            <% } else { %>
+                                            <span><a href="/employee-profile/<%= result.id %>" target="_blank"><strong class="emp-name"><%= result.name %></strong></a></span>
+                                            <% } 
+                                            else if(result.request_status === 3) { %>
+                                            <span><%= result.name %></span>
+                                            <% } 
+                                            else { %>
                                             Persons <%= key+1 %>
                                             <% } %>
                                         </li>
