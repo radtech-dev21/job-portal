@@ -1,4 +1,5 @@
 $(document).ready( function(){
+	/*code for managing requests*/
 	$(document).on("click", ".connection-request" , function() {
 		var _this = $(this);
 		var request = _this.data('request');
@@ -19,6 +20,34 @@ $(document).ready( function(){
 		});
 	});
 	
+	/*code for sending mails on blocking hirers*/
+	var hirerID;
+	var blockRef;
+	$(document).on("click", ".block-btn" , function() {
+		blockRef = $(this);
+		var hirerName = $(this).parent('div').data('hirer_name');
+		hirerID = $(this).parent('div').data('hirer_id');
+		$('.hirer-name').html(hirerName);
+	});
+
+	$(document).on("click", ".send-mail" , function() {
+		var message = $('#mail_text').val();
+		$.ajax({
+			type: 'GET',
+			url: "/acceptRejectRequest",
+			data: {request_type : 'block', hirer_id : hirerID, message : message},
+			dataType: "json",
+			success: function(resultData) { 
+				if(resultData.status === 2 || resultData.status === 3){
+					blockRef.closest('.card').hide();
+					$('#mail_text').val('');
+					$('.close').trigger('click');
+				}
+			}
+		});
+	});
+
+	/*code for fetching data for tabs*/
 	$('.request-tabs').on('click', function(){
 		var _this = $(this);
 		var requestTab = _this.attr('id').split('-');
@@ -41,7 +70,7 @@ $(document).ready( function(){
 						if(requestType == 'pending'){
 							html+='<div class="col-sm conn-btn" data-hirer_id="'+resultData.hirerDetails[i].id+'" data-hirer_name="'+resultData.hirerDetails[i].name+'"><button type="button" class="btn btn-primary connection-request" data-request="accept">Accept</button><button type="button" class="btn btn-danger connection-request" data-request="reject">Reject</button></div>';
 						}else if(requestType == 'accept'){
-							html+='<div class="col-sm conn-btn" data-hirer_id="'+resultData.hirerDetails[i].id+'" data-hirer_name="'+resultData.hirerDetails[i].name+'"><button type="button" class="btn btn-danger connection-request" data-request="block">Block</button></div>';
+							html+='<div class="col-sm conn-btn" data-hirer_id="'+resultData.hirerDetails[i].id+'" data-hirer_name="'+resultData.hirerDetails[i].name+'"><button type="button" class="btn btn-danger block-btn" data-toggle="modal" data-target="#blockModal">Block</button></div>';
 						}else if(requestType == 'block'){
 							html+='<div class="col-sm conn-btn" data-hirer_id="'+resultData.hirerDetails[i].id+'" data-hirer_name="'+resultData.hirerDetails[i].name+'"><button type="button" class="btn btn-info connection-request" data-request="unblock">Unblock</button></div>';
 						}

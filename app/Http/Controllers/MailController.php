@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\SignupEmail;
+use App\Mail\BlockMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 

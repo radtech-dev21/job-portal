@@ -40,7 +40,37 @@
      <div class="tab-pane fade" id="nav-block" role="tabpanel" aria-labelledby="nav-block-tab">
         <div class="alert alert-danger">No Data Found</div>
     </div>
-</div>
+
+    <div class="modal fade" id="blockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Reason For Blocking</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-1 form-group">
+                            To: 
+                        </div>
+                        <div class="col-sm-4 form-group">
+                            <label class="hirer-name"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="form-group">Message</label>
+                        <textarea class="mail-content form-group" id="mail_text" name="mail_text"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary send-mail">Send Mail</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script type="text/javascript" src="{{ asset('js/custom/hirer.js') }}"></script>
 @endsection

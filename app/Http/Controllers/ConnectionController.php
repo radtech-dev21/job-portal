@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\ConnectionRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Jobs\SendBlockEmail;
 class ConnectionController extends Controller
 {
     /*function to send connection request*/
@@ -42,6 +43,24 @@ class ConnectionController extends Controller
         		$status = 1;
         	}else if($requestType == 'block'){
                 $status = 3;
+                $message = $request->message;
+                $hirerDetails = DB::table('users')
+                ->where('id', '=', $hirerID)
+                ->select('*')
+                ->first();
+                $employeeDetails = DB::table('employees')
+                ->where('id', '=', $employeeID)
+                ->select('*')
+                ->first();
+                if(!empty($hirerDetails)){
+                    $details = [
+                        'email' => $hirerDetails->email,
+                        'message' => $message,
+                        'employee_name' => $employeeDetails->name,
+                        'hirer_name' => $hirerDetails->name
+                    ];
+                    SendBlockEmail::dispatch($details);
+                }
             }else if($requestType == 'unblock'){
                 $status = 1;
             }
